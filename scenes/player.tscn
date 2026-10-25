@@ -140,8 +140,3 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290063905]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_auskg")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=888422762]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 1.0

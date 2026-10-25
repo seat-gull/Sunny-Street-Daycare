@@ -5,8 +5,10 @@
 
 [node name="game" type="Node2D" unique_id=884617510]
 
-[node name="textbox" parent="." unique_id=1108137771 instance=ExtResource("2_yqjtg")]
-offset = Vector2(-280, 0)
-transform = Transform2D(1, 0, 0, 1, -280, 0)
-
 [node name="Player" parent="." unique_id=888699418 instance=ExtResource("1_uwrxv")]
+
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=83941832]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_enabled = true
+
+[node name="textbox" parent="." unique_id=1108137771 instance=ExtResource("2_yqjtg")]

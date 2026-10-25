@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sunny Street Daycare"
-run/main_scene="uid://bgrwkcyoeatql"
+run/main_scene="uid://cw3ayyv8ksl8n"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
