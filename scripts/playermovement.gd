@@ -7,6 +7,9 @@ var direction : Vector2
 const dashspeed = 1000
 const dashlength = .1
 
+var max_health: int = 100
+var health: int = 100
+
 func _physics_process(delta:float) -> void:
 
 	direction.x = Input.get_axis("move_left","move_right")
@@ -35,9 +38,6 @@ func _physics_process(delta:float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO,speed)
 		if $sprite.animation != "idle":
 			$sprite.animation = "idle"
-	
-	
-	
-
 		
 	move_and_slide()
+	

@@ -19,7 +19,7 @@ shadow_offset = Vector2(0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie4g4"]
 bg_color = Color(0.9882353, 0.9843137, 0.9882353, 1)
 
-[node name="health bar" type="ProgressBar" unique_id=1791631509]
+[node name="HealthBar" type="ProgressBar" unique_id=1791631509]
 z_index = 1
 offset_right = 240.0
 offset_bottom = 27.0
