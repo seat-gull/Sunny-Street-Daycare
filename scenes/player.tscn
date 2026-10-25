@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ffd5mtoc4jl6" path="res://scripts/playermovement.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://runefw46l584" path="res://assets/lilguyspritesheet.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://deo58ofvkvesc" path="res://scenes/dash.tscn" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("2_qhqgy")
@@ -125,18 +126,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auskg"]
-size = Vector2(28, 47)
+size = Vector2(14, 10.5)
 
 [node name="player" type="CharacterBody2D" unique_id=888699418]
 motion_mode = 1
 script = ExtResource("1_g2els")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1642272911]
-position = Vector2(-1, -5)
+position = Vector2(5, 5.5)
+scale = Vector2(0.59375, 0.546875)
 sprite_frames = SubResource("SpriteFrames_qbdty")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290063905]
-position = Vector2(0, -4.5)
+position = Vector2(6, 14.25)
 shape = SubResource("RectangleShape2D_auskg")
+
+[node name="dash" parent="." unique_id=1704637985 instance=ExtResource("3_qhqgy")]

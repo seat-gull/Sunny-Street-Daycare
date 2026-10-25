@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://deo58ofvkvesc"]
+
+[ext_resource type="Script" uid="uid://6qyteuopbsg1" path="res://scripts/dash.gd" id="1_avqmg"]
+
+[node name="dash" type="Node2D" unique_id=1704637985]
+script = ExtResource("1_avqmg")
+
+[node name="dashtimer" type="Timer" parent="." unique_id=730946746]
+one_shot = true
