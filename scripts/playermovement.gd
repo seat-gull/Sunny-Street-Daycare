@@ -14,7 +14,6 @@ func _physics_process(delta:float) -> void:
 	direction = direction.normalized()
 	
 	if Input.is_action_just_pressed("dash") and not dash.is_dashing():
-		$sprite.animation = "dash"
 		dash.start_dash(dashlength)
 	var speed = dashspeed if dash.is_dashing() else movement_speed
 	
@@ -23,14 +22,20 @@ func _physics_process(delta:float) -> void:
 		$sprite.flip_h = false
 	elif direction.x < 0:
 		$sprite.flip_h = true
-	
+	if dash.is_dashing():
+		$sprite.animation = "dash"
+		
 	if direction != Vector2.ZERO:
 		velocity = direction * speed
 		if $sprite.animation != "walk":
 			$sprite.animation = "walk"
-	else:
+	else: 
 		velocity = velocity.move_toward(Vector2.ZERO,speed)
 		if $sprite.animation != "idle":
 			$sprite.animation = "idle"
+	
+	
+	
+
 		
 	move_and_slide()
