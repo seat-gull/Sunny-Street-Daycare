@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dndeb1dxrrtj5"]
+
+[ext_resource type="Script" uid="uid://dyhq82211emv5" path="res://possible door.gd" id="1_p4vth"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=316298105]
+script = ExtResource("1_p4vth")
+door_cell = null
+source_id = null
+open_door_coords = null
+locked = null
