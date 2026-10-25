@@ -128,7 +128,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auskg"]
 size = Vector2(14, 10.5)
 
-[node name="player" type="CharacterBody2D" unique_id=888699418]
+[node name="player" type="CharacterBody2D" unique_id=888699418 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
 
