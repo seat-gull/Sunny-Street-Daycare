@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://csnfvu1x2wnra"]
+
+[ext_resource type="Script" uid="uid://cpnl7rgco84pi" path="res://scripts/bullet.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://dym07snio46m0" path="res://assets/toy blocks.webp" id="2_t4vbm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xduwj"]
+atlas = ExtResource("2_t4vbm")
+region = Rect2(0, 0, 51.33336, 49)
+
+[node name="Bullet" type="Node2D" unique_id=602451810]
+script = ExtResource("1_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=557075936]
+scale = Vector2(0.4, 0.4)
+texture = SubResource("AtlasTexture_xduwj")
+
+[node name="KillTimer" type="Timer" parent="." unique_id=1340946196]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
