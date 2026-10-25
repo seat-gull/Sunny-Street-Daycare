@@ -9,7 +9,6 @@ region = Rect2(0, 0, 50.667, 49)
 
 [node name="Bullet" type="Area2D" unique_id=1319927573]
 script = ExtResource("1_v8qja")
-speed = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=557075936]
 scale = Vector2(0.4, 0.4)
@@ -17,7 +16,6 @@ texture = SubResource("AtlasTexture_u5sy4")
 
 [node name="KillTimer" type="Timer" parent="." unique_id=1340946196]
 wait_time = 10.0
-autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=644045179]
 

@@ -144,3 +144,6 @@ position = Vector2(6, 14.25)
 shape = SubResource("RectangleShape2D_auskg")
 
 [node name="dash" parent="." unique_id=1704637985 instance=ExtResource("3_qhqgy")]
+
+[node name="dash timer" type="Timer" parent="dash" unique_id=1528103805]
+one_shot = true
