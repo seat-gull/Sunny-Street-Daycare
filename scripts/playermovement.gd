@@ -22,11 +22,13 @@ func _physics_process(delta:float) -> void:
 		$sprite.flip_h = false
 	elif direction.x < 0:
 		$sprite.flip_h = true
+	
 	if dash.is_dashing():
 		$sprite.animation = "dash"
+		velocity = direction * dashspeed
 		
-	if direction != Vector2.ZERO:
-		velocity = direction * speed
+	elif direction != Vector2.ZERO:
+		velocity = direction * movement_speed
 		if $sprite.animation != "walk":
 			$sprite.animation = "walk"
 	else: 
