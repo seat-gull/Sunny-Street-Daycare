@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 				textbox.animate_text("The door is locked.","n")
 			else:
 				open_door()
+				
 
 func entered(body: Node2D) -> void:
 	if body.is_in_group("player") and not door_open:
@@ -36,5 +37,6 @@ func exited(body: Node2D) -> void:
 		
 func open_door() -> void:
 	door_open = true
-	tile_map.set_cell(door_cell,source_id,open_door_coords)
+	tile_map.erase_cell(door_cell)
+	tile_map.set_cell(door_cell, source_id, open_door_coords)
 	textbox.hide_textbox()
