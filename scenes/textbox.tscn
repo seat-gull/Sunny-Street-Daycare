@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dwwow6s78ss53"]
+
+[ext_resource type="Script" uid="uid://duds7d0g8omti" path="res://scripts/textbox.gd" id="1_3xmdk"]
+[ext_resource type="FontFile" uid="uid://cwypxjh3t1wf0" path="res://assets/VT323-Regular.ttf" id="2_g5d5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbdty"]
+bg_color = Color(0.1764706, 0.15294118, 0.1882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9882353, 0.9843137, 0.9882353, 1)
+
+[node name="textbox" type="CanvasLayer" unique_id=1108137771]
+script = ExtResource("1_3xmdk")
+
+[node name="TextboxContainer" type="MarginContainer" parent="." unique_id=419643411]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = -576.0
+offset_bottom = -528.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="TextboxContainer" unique_id=1264969057]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbdty")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer/Panel" unique_id=917388716]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1121.0
+offset_bottom = 177.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="TextboxContainer/Panel/MarginContainer" unique_id=1647498404]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/Panel/MarginContainer" unique_id=689753785]
+layout_mode = 2
+
+[node name="start" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer" unique_id=786883]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_g5d5p")
+theme_override_font_sizes/font_size = 30
+text = "*"
+
+[node name="text" type="Label" parent="TextboxContainer/Panel/MarginContainer/HBoxContainer" unique_id=179085488]
+custom_maximum_size = Vector2(500, 90)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_g5d5p")
+theme_override_font_sizes/font_size = 30
+text = "the door is locked"
+autowrap_mode = 3

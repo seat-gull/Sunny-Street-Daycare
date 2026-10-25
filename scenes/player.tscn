@@ -127,7 +127,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auskg"]
 size = Vector2(28, 47)
 
-[node name="Player" type="CharacterBody2D" unique_id=888699418]
+[node name="player" type="CharacterBody2D" unique_id=888699418]
 motion_mode = 1
 script = ExtResource("1_g2els")
 
@@ -140,3 +140,8 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290063905]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_auskg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=888422762]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
