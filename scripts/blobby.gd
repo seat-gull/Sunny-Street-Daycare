@@ -32,11 +32,13 @@ func _on_player_entered(body: Node2D) -> void:
 	has_triggered = true
 
 	trigger_area.set_deferred("monitoring", false)
-
+	body.movement_locked = true
 	textbox.animate_text("Thanks for coming to daycare! You'll be a delicious snack!", "Blobby")
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(3.5).timeout
 
 	textbox.hide_textbox()
+	if is_instance_valid(body):
+		body.movement_locked = false
 	shoot_timer.start()
 
 func _on_shoot_timer_timeout() -> void:

@@ -203,8 +203,9 @@ tile_set = SubResource("TileSet_lbhrr")
 position = Vector2(786, 22)
 texture = ExtResource("2_gee14")
 
-[node name="player" parent="." unique_id=888699418 instance=ExtResource("1_uwrxv")]
+[node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox") instance=ExtResource("1_uwrxv")]
 position = Vector2(-51, 137)
+textbox = NodePath("../textbox")
 
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(1.5, 1.5)
@@ -214,13 +215,13 @@ position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2114102679]
 
-[node name="UI" type="Control" parent="CanvasLayer" unique_id=342046252]
-visible = false
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=342046252 node_paths=PackedStringArray("player")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_p57ef")
+player = NodePath("../../player")
 
 [node name="HealthBar" parent="CanvasLayer/UI" unique_id=1791631509 instance=ExtResource("6_u5sy4")]
 layout_mode = 0
