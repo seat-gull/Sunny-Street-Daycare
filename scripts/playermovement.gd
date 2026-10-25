@@ -4,7 +4,7 @@ extends CharacterBody2D
 var direction : Vector2
 
 @onready var dash = $dash
-const dashspeed = 1000
+const dashspeed = 800
 const dashlength = .1
 
 var max_health: int = 100
