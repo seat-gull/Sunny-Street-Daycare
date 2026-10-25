@@ -129,6 +129,7 @@ animations = [{
 size = Vector2(14, 10.5)
 
 [node name="player" type="CharacterBody2D" unique_id=888699418 groups=["player"]]
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_g2els")
 
