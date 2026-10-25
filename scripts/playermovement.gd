@@ -41,3 +41,14 @@ func _physics_process(delta:float) -> void:
 		
 	move_and_slide()
 	
+	
+func take_damage(amount: int) -> void:
+	health -= amount
+	print("Player health: ", health)
+
+	if health <= 0:
+		die()
+
+func die() -> void:
+	print("Player defeated!")
+	queue_free()
