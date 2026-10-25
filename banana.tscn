@@ -4,11 +4,11 @@
 
 [sub_resource type="GDScript" id="GDScript_s2ghs"]
 script/source = "extends Area2D
+@export var textbox: CanvasLayer
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print(\"congrats! you got lunch!\")
-	print(\"munch munch, delicious!\")
+		textbox.animate_text(\"Congrats!\", \"n\")
 	queue_free()
 	
 "

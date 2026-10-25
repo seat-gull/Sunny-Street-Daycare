@@ -32,6 +32,7 @@ func show_message(message: String) -> void:
 	start_symbol.text = "*"
 	end_symbol.text = "*"
 	textbox_container.show()
+	
 
 func animate_text(next_text: String,talker: String) -> void:
 	label.text = next_text
@@ -46,6 +47,7 @@ func animate_text(next_text: String,talker: String) -> void:
 		speaker_image.hide()
 		speaker.text = "..."
 	speaker.show()
+	
 	
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
