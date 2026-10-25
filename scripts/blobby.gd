@@ -5,7 +5,7 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var shoot_timer = $ShootTimer
 @onready var trigger_area: Area2D = $TriggerArea
 @export var textbox: CanvasLayer
-@export var shooter_timer_wait_time: float = 0.5
+@export var shooter_timer_wait_time: float = 0.4
 @export var step_height: float = 15.0
 @export var start_height: float = -20.0
 @export var left_angle_spread: float = 20.0

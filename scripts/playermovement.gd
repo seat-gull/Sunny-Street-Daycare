@@ -1,8 +1,9 @@
 extends CharacterBody2D
 @export var textbox: CanvasLayer
 @export var movement_speed : float = 150
-var direction : Vector2
+var direction : Vector2 = Vector2(4, 4)
 var movement_locked: bool = false
+var start_position: Vector2
 
 @onready var dash = $dash
 const dashspeed = 800
@@ -10,6 +11,9 @@ const dashlength = .1
 
 var max_health: int = 100
 var health: int = 100
+
+func _ready() -> void:
+	start_position = global_position
 
 func _physics_process(delta:float) -> void:
 	if movement_locked:
@@ -54,5 +58,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	queue_free()
+	global_position = start_position
+	velocity = Vector2.ZERO
 	textbox.animate_text("Lil guy died :(, thx for playing tho!", "n")
+	queue_free()

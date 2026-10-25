@@ -246,5 +246,5 @@ textbox = NodePath("../textbox")
 [node name="TriggerArea" type="Area2D" parent="blobby" unique_id=1818581861]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blobby/TriggerArea" unique_id=1014281672]
-position = Vector2(-695, 47)
+position = Vector2(-695, 31)
 shape = SubResource("RectangleShape2D_ie4g4")
