@@ -181,7 +181,10 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lnu2h")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xduwj"]
-size = Vector2(48, 40.5)
+size = Vector2(18, 40.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4g4"]
+size = Vector2(52, 36)
 
 [node name="game" type="Node2D" unique_id=884617510]
 
@@ -196,7 +199,7 @@ tile_map_data = PackedByteArray("AAAIAAUAAQADAAIAAAAJAAUAAQADAAIAAAAKAAUAAQADAAI
 tile_set = SubResource("TileSet_lbhrr")
 
 [node name="player" parent="." unique_id=888699418 instance=ExtResource("1_uwrxv")]
-position = Vector2(-82, 140)
+position = Vector2(-51, 137)
 
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(1.5, 1.5)
@@ -220,16 +223,21 @@ offset_top = 31.0
 offset_right = 278.0
 offset_bottom = 58.0
 
-[node name="opendoor" type="Area2D" parent="." unique_id=904189814 node_paths=PackedStringArray("textbox", "tile_map")]
-position = Vector2(8, 125)
+[node name="lockeddoor" type="Area2D" parent="." unique_id=904189814 node_paths=PackedStringArray("textbox")]
+position = Vector2(-88, 152)
 script = ExtResource("7_u5sy4")
 textbox = NodePath("../textbox")
-tile_map = NodePath("../TileMapLayer")
-locked = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="opendoor" unique_id=918836586]
-position = Vector2(0, -1.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lockeddoor" unique_id=918836586]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_xduwj")
 
-[node name="blobby" parent="." unique_id=1141341022 instance=ExtResource("7_gee14")]
+[node name="blobby" parent="." unique_id=1141341022 node_paths=PackedStringArray("textbox") instance=ExtResource("7_gee14")]
 position = Vector2(703, 39)
+textbox = NodePath("../textbox")
+
+[node name="TriggerArea" type="Area2D" parent="blobby" unique_id=1818581861]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blobby/TriggerArea" unique_id=1014281672]
+position = Vector2(-695, 47)
+shape = SubResource("RectangleShape2D_ie4g4")

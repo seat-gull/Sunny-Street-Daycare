@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://duds7d0g8omti" path="res://scripts/textbox.gd" id="1_3xmdk"]
 [ext_resource type="FontFile" uid="uid://cwypxjh3t1wf0" path="res://assets/VT323-Regular.ttf" id="2_g5d5p"]
-[ext_resource type="Texture2D" uid="uid://dwsf26dg1jvjc" path="res://icon.svg" id="2_qagdh"]
+[ext_resource type="Texture2D" uid="uid://cipvyadharwyp" path="res://assets/blobbypfp.png" id="2_qagdh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vivr"]
 bg_color = Color(0.1764706, 0.15294118, 0.1882353, 1)

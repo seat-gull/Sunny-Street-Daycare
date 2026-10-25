@@ -50,5 +50,5 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	print("Player defeated!")
+	print("died")
 	queue_free()
