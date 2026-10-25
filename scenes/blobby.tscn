@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://pyknw4nh7lnl" path="res://scripts/blobby.gd" id="1_oiati"]
 [ext_resource type="Texture2D" uid="uid://dvft42hocxnya" path="res://assets/bloby idle & ded.webp" id="2_nwil0"]
+[ext_resource type="Texture2D" uid="uid://bcabryhxbses8" path="res://assets/bullet textures/bullet1.tres" id="2_x31or"]
+[ext_resource type="Texture2D" uid="uid://2u2oaps0u0xx" path="res://assets/bullet textures/bullet2.tres" id="3_kd0ry"]
+[ext_resource type="Texture2D" uid="uid://dh7606aa606a" path="res://assets/bullet textures/bullet3.tres" id="4_homft"]
+[ext_resource type="Texture2D" uid="uid://lt6x0c7baeuc" path="res://assets/bullet textures/bullet4.tres" id="5_sit0n"]
+[ext_resource type="Texture2D" uid="uid://derp0jedyrl73" path="res://assets/bullet textures/bullet5.tres" id="6_n6aa4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7f7r"]
 atlas = ExtResource("2_nwil0")
@@ -70,6 +75,7 @@ radius = 27.0
 
 [node name="blobby" type="AnimatableBody2D" unique_id=1141341022]
 script = ExtResource("1_oiati")
+bullet_textures = Array[Texture2D]([ExtResource("2_x31or"), ExtResource("3_kd0ry"), ExtResource("4_homft"), ExtResource("5_sit0n"), ExtResource("6_n6aa4")])
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=467976783]
 sprite_frames = SubResource("SpriteFrames_1vivr")

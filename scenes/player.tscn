@@ -126,7 +126,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auskg"]
-size = Vector2(14, 10.5)
+size = Vector2(12, 18.5)
 
 [node name="player" type="CharacterBody2D" unique_id=888699418 groups=["player"]]
 motion_mode = 1
@@ -140,7 +140,7 @@ animation = &"dash"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290063905]
-position = Vector2(6, 14.25)
+position = Vector2(7, 10.25)
 shape = SubResource("RectangleShape2D_auskg")
 
 [node name="dash" parent="." unique_id=1704637985 instance=ExtResource("3_qhqgy")]

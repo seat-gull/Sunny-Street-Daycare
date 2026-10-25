@@ -1,7 +1,8 @@
 extends CharacterBody2D
-
+@export var textbox: CanvasLayer
 @export var movement_speed : float = 150
 var direction : Vector2
+var movement_locked: bool = false
 
 @onready var dash = $dash
 const dashspeed = 800
@@ -11,7 +12,10 @@ var max_health: int = 100
 var health: int = 100
 
 func _physics_process(delta:float) -> void:
-
+	if movement_locked:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	direction.x = Input.get_axis("move_left","move_right")
 	direction.y = Input.get_axis("move_up","move_down")
 	direction = direction.normalized()
@@ -43,12 +47,12 @@ func _physics_process(delta:float) -> void:
 	
 	
 func take_damage(amount: int) -> void:
-	health -= amount
+	health = clampi(health - amount, 0, max_health)
 	print("Player health: ", health)
 
 	if health <= 0:
 		die()
 
 func die() -> void:
-	print("died")
 	queue_free()
+	textbox.animate_text("Lil guy died :(, thx for playing tho!", "n")
