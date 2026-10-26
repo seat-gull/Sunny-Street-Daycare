@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://cba7joke46wdw"]
-
-[ext_resource type="Script" uid="uid://dhbqg0s1h3b6f" path="res://new_gd_script.gd" id="1_hilkf"]
-[ext_resource type="PackedScene" uid="uid://cba7joke46wdw" path="res://scenes/banana.tscn" id="2_a45fu"]
-
-[node name="banana" unique_id=1183148520 instance=ExtResource("2_a45fu")]
-script = ExtResource("1_hilkf")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

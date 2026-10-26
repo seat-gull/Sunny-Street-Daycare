@@ -18,6 +18,7 @@ func _ready() -> void:
 func _physics_process(delta:float) -> void:
 	if movement_locked:
 		velocity = Vector2.ZERO
+		$sprite.animation = "idle"
 		move_and_slide()
 		return
 	direction.x = Input.get_axis("move_left","move_right")

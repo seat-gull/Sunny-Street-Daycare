@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dqxf00fjysulc"]
+
+[ext_resource type="Texture2D" uid="uid://dwsf26dg1jvjc" path="res://icon.svg" id="1_yk2u2"]
+
+[sub_resource type="GDScript" id="GDScript_1vivr"]
+script/source = "extends Area2D
+@export var textbox: CanvasLayer
+
+func _on_body_entered(body) :
+	textbox.animate_text(\"You got a red key!\",\"n\")
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ltq3"]
+size = Vector2(128, 129)
+
+[node name="key" type="Area2D" unique_id=498507629]
+script = SubResource("GDScript_1vivr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=976799893]
+texture = ExtResource("1_yk2u2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1170871365]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_7ltq3")
