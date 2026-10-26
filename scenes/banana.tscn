@@ -1,15 +1,9 @@
-[gd_scene format=3 uid="uid://f43ds47j7che"]
+[gd_scene format=3 uid="uid://cba7joke46wdw"]
 
-[ext_resource type="Texture2D" uid="uid://tkbdeodugvbg" path="res://assets/banana.png" id="1_hilkf"]
+[ext_resource type="Script" uid="uid://dhbqg0s1h3b6f" path="res://new_gd_script.gd" id="1_hilkf"]
+[ext_resource type="PackedScene" uid="uid://cba7joke46wdw" path="res://scenes/banana.tscn" id="2_a45fu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a45fu"]
-radius = 13.0
+[node name="banana" unique_id=1183148520 instance=ExtResource("2_a45fu")]
+script = ExtResource("1_hilkf")
 
-[node name="Banana" type="Area2D" unique_id=1183148520]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1961023321]
-texture = ExtResource("1_hilkf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078768074]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_a45fu")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

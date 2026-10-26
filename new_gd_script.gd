@@ -4,4 +4,3 @@ extends Area2D
 func _on_body_entered(body) :
 	textbox.animate_text("You got lunch!","n")
 	queue_free()
-	print("yayyay?????")
