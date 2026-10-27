@@ -6,9 +6,19 @@
 script/source = "extends Area2D
 @export var textbox: CanvasLayer
 
-func _on_body_entered(body) :
-	textbox.animate_text(\"You got a red key!\",\"n\")
-	queue_free()
+var key_is_in_inv: bool = false
+
+func entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		if key_is_in_inv == false:
+			textbox.animate_text(\"You got a red key!\",\"n\")
+			key_is_in_inv = true
+			queue_free()
+		else:
+			textbox.hide_textbox()
+
+func _ready() -> void:
+	body_entered.connect(entered)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fttkb"]
@@ -191,6 +201,7 @@ animations = [{
 radius = 64.12488
 
 [node name="key" type="Area2D" unique_id=498507629]
+scale = Vector2(0.8, 0.8)
 script = SubResource("GDScript_1vivr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1097614111]
