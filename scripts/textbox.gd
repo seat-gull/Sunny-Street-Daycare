@@ -46,9 +46,13 @@ func animate_text(next_text: String,talker: String) -> void:
 	if talker == "n":
 		speaker_image.hide()
 		speaker.text = "..."
+	
+	if talker == "Blobby":
+		speaker_image.show()
+		speaker.text = talker
+		
 	speaker.show()
-	
-	
+		
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.tween_property(label,"visible_characters",-1,next_text.length() * CHAR_READ_RATE)

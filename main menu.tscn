@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scenes/game.tscn\")
+
 	
 
 
@@ -35,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_gee14")
 
-[node name="Button" type="Button" parent="." unique_id=1874067397]
+[node name="Button" type="TextureButton" parent="." unique_id=1415718894]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,9 +49,9 @@ offset_right = 90.0
 offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
-icon = ExtResource("1_7mewq")
+texture_normal = ExtResource("1_7mewq")
 
-[node name="Button2" type="Button" parent="." unique_id=765519032]
+[node name="Button2" type="TextureButton" parent="." unique_id=98494495]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -63,7 +64,7 @@ offset_right = 132.0
 offset_bottom = 130.0
 grow_horizontal = 2
 grow_vertical = 2
-icon = ExtResource("2_bajiw")
+texture_normal = ExtResource("2_bajiw")
 
 [connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_exit_pressed"]
