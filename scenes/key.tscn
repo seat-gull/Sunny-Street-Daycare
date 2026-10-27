@@ -14,9 +14,11 @@ func pickup(body: Node2D) -> void:
 		if body.key_is_in_inv == false:
 			textbox.animate_text(\"You got a red key!\",\"n\")
 			body.key_is_in_inv = true
+			visible = false
+			await get_tree().create_timer(3).timeout
+			textbox.hide_textbox()
 			queue_free()
-		else:
-			textbox.hide()
+			
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fttkb"]
