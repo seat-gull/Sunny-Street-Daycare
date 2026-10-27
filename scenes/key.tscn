@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqxf00fjysulc"]
 
-[ext_resource type="Texture2D" uid="uid://b1yq8sngh41ou" path="res://assets/key_32x32_24f.png" id="1_yk2u2"]
+[ext_resource type="Texture2D" uid="uid://bhbocerojhlgl" path="res://assets/red key black outline.png" id="1_yk2u2"]
 
 [sub_resource type="GDScript" id="GDScript_1vivr"]
 script/source = "extends Area2D
@@ -9,7 +9,8 @@ script/source = "extends Area2D
 func _on_body_entered(body) :
 	textbox.animate_text(\"You got a red key!\",\"n\")
 	queue_free()
-	
+
+	get_tree().reload_current_scene()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fttkb"]
@@ -183,22 +184,26 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bmwd0")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"default",
 "speed": 7.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vrlf"]
+radius = 64.12488
 
 [node name="key" type="Area2D" unique_id=498507629]
 script = SubResource("GDScript_1vivr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1097614111]
+scale = Vector2(4.25, 4.1523438)
 sprite_frames = SubResource("SpriteFrames_1vivr")
 autoplay = "default"
-frame_progress = 0.9764935
+frame = 23
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1170871365]
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_8vrlf")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

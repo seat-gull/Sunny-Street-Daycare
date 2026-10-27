@@ -238,12 +238,12 @@ position = Vector2(-695, 31)
 shape = SubResource("RectangleShape2D_ie4g4")
 
 [node name="key" parent="." unique_id=498507629 node_paths=PackedStringArray("textbox") instance=ExtResource("8_gee14")]
-position = Vector2(793, 7)
+position = Vector2(785, 5)
 scale = Vector2(0.2, 0.2)
 textbox = NodePath("../textbox")
 
 [node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox") instance=ExtResource("1_uwrxv")]
-position = Vector2(-51, 137)
+position = Vector2(-65, 139)
 textbox = NodePath("../textbox")
 
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
