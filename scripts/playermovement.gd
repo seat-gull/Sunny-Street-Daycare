@@ -12,6 +12,8 @@ const dashlength = .1
 var max_health: int = 100
 var health: int = 100
 
+var key_is_in_inv: bool = false
+
 func _ready() -> void:
 	start_position = global_position
 

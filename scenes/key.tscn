@@ -6,17 +6,17 @@
 script/source = "extends Area2D
 @export var textbox: CanvasLayer
 
-var key_is_in_inv: bool = false
-
 func _ready() -> void:
 	body_entered.connect(pickup)
 	
 func pickup(body: Node2D) -> void:
 	if body.is_in_group(\"player\"):
-		if key_is_in_inv == false:
+		if body.key_is_in_inv == false:
 			textbox.animate_text(\"You got a red key!\",\"n\")
-			key_is_in_inv = true
+			body.key_is_in_inv = true
 			queue_free()
+		else:
+			textbox.hide()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fttkb"]
