@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://c7dulym3vhlf2"]
+
+[ext_resource type="Texture2D" uid="uid://dym07snio46m0" path="res://assets/toy blocks.webp" id="1_a75pv"]
+
+[resource]
+atlas = ExtResource("1_a75pv")
+region = Rect2(410, 0, 50, 49.5)

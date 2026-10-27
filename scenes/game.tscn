@@ -197,16 +197,17 @@ size = Vector2(52, 36)
 
 [node name="doors" type="Node" parent="." unique_id=1623868773]
 
-[node name="interactable door" type="Area2D" parent="doors" unique_id=904189814 node_paths=PackedStringArray("textbox")]
+[node name="interactable door" type="Area2D" parent="doors" unique_id=904189814 node_paths=PackedStringArray("textbox", "tilemap")]
 position = Vector2(-88, 152)
 script = ExtResource("7_u5sy4")
 textbox = NodePath("../../textbox")
+tilemap = NodePath("../../TileMapLayer/TileMapLayer2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="doors/interactable door" unique_id=918836586]
+[node name="front door" type="CollisionShape2D" parent="doors/interactable door" unique_id=918836586]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_xduwj")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="doors/interactable door" unique_id=1483467305]
+[node name="red door" type="CollisionShape2D" parent="doors/interactable door" unique_id=1483467305]
 position = Vector2(640.5, 17)
 shape = SubResource("RectangleShape2D_1vivr")
 
