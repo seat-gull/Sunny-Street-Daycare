@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://hxw7em3til1e"]
 
 [ext_resource type="Texture2D" uid="uid://cu7owqm7h6kum" path="res://assets/Start.png" id="1_7mewq"]
-[ext_resource type="Texture2D" uid="uid://5nok63ocgsw3" path="res://assets/Try again.png" id="2_bajiw"]
+[ext_resource type="Texture2D" uid="uid://cvblto6drdeij" path="res://assets/school exterior.png" id="1_vsw8r"]
 [ext_resource type="Texture2D" uid="uid://b1ayvm633eyfv" path="res://assets/exit button.png" id="2_f0j1r"]
+[ext_resource type="Texture2D" uid="uid://c6si58xpqow8l" path="res://assets/menu.png" id="2_km7eu"]
 
 [sub_resource type="GDScript" id="GDScript_gee14"]
 script/source = "extends Control
@@ -24,61 +25,82 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 "
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vivr"]
+texture = ExtResource("1_vsw8r")
+modulate_color = Color(0.5370987, 0.5370987, 0.5370987, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vrlf"]
+texture = ExtResource("2_km7eu")
+
 [node name="MainMenu" type="Control" unique_id=1344765013]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 3.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_gee14")
 
-[node name="Button" type="TextureButton" parent="." unique_id=1415718894]
+[node name="Panel" type="Panel" parent="." unique_id=1400986902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -77.0
+offset_right = -541.0
+offset_bottom = -178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_1vivr")
+
+[node name="Panel2" type="Panel" parent="." unique_id=393495017]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -90.0
-offset_top = -34.0
-offset_right = 90.0
-offset_bottom = 34.0
+offset_left = -219.0
+offset_top = -247.5
+offset_right = 219.0
+offset_bottom = 247.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8vrlf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=165725762]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.52000004
+anchor_bottom = 0.53400004
+offset_left = -310.0
+offset_top = -78.0
+offset_right = 266.95996
+offset_bottom = 99.96799
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -40
+
+[node name="Button" type="TextureButton" parent="VBoxContainer" unique_id=1415718894]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("1_7mewq")
 
-[node name="Button2" type="TextureButton" parent="." unique_id=98494495]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = 62.0
-offset_right = 132.0
-offset_bottom = 130.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Button2" type="TextureButton" parent="VBoxContainer" unique_id=98494495]
+custom_minimum_size = Vector2(0, 1)
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("2_f0j1r")
 
-[node name="Button3" type="TextureButton" parent="." unique_id=889573953]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = 62.0
-offset_right = 132.0
-offset_bottom = 130.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("2_bajiw")
-
-[connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_exit_pressed"]
