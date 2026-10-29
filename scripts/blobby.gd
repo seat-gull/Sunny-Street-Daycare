@@ -5,9 +5,9 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var shoot_timer = $ShootTimer
 @onready var trigger_area: Area2D = $TriggerArea
 @export var textbox: CanvasLayer
-@export var shooter_timer_wait_time: float = 0.25
+@export var shooter_timer_wait_time: float = 0.35
 @export var start_height: float = -15
-@export var left_angle_spread: float = 5
+@export var angle_spread: float = 5
 
 var height_pattern = [20, 30, 40, 50, 60, 50, 40, 30, 20]
 var shot_count: int = 0
@@ -49,9 +49,11 @@ func _on_shoot_timer_timeout() -> void:
 	bullet.global_position = global_position + Vector2(0,start_height + height_step)
 	position.y = start_height + height_step
 
-	bullet.global_rotation = deg_to_rad(
-		180.0 + randf_range(-left_angle_spread,left_angle_spread)
-	)
+	bullet.global_rotation = deg_to_rad(180.0 + randf_range(-angle_spread,angle_spread))
+	
+	var visual_angle = randf_range(0, TAU)
+	bullet.set_sprite_rotation(visual_angle)
+
 
 	if bullet_textures.size() > 0:
 		var texture = bullet_textures.pick_random()

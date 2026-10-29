@@ -8,6 +8,9 @@ extends Area2D
 func set_bullet_texture(new_texture: Texture2D) -> void:
 	sprite.texture = new_texture
 
+func set_sprite_rotation(angle_radians: float) -> void:
+	sprite.rotation = angle_radians
+	
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
