@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d0wjfyonnnqf3"]
+
+[node name="hotbar" type="HBoxContainer" unique_id=296212872]
+offset_right = 40.0
+offset_bottom = 40.0

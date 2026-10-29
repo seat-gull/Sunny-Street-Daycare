@@ -61,7 +61,10 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	global_position = start_position
-	velocity = Vector2.ZERO
 	textbox.animate_text("Lil guy died :(, thx for playing tho!", "n")
-	queue_free()
+	
+	velocity = Vector2.ZERO
+	global_position = start_position
+	health = 100
+	
+	
