@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://b02rik1w83dsl"]
+
+[ext_resource type="Texture2D" uid="uid://c6si58xpqow8l" path="res://assets/menu.png" id="1_a4j6f"]
+[ext_resource type="Texture2D" uid="uid://5nok63ocgsw3" path="res://assets/Try again.png" id="2_qrar5"]
+
+[sub_resource type="GDScript" id="GDScript_12vek"]
+script/source = "extends Control
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
+func _on_try_again_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/game.tscn\")
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xsilq"]
+load_path = "res://.godot/imported/menu background.png-60593f667da257af7ce2b6386bd7a3b4.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a4j6f"]
+texture = SubResource("CompressedTexture2D_xsilq")
+modulate_color = Color(0.5370987, 0.5370987, 0.5370987, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4boq"]
+texture = ExtResource("1_a4j6f")
+modulate_color = Color(1, 1, 1, 0.54901963)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_68bym"]
+load_path = "res://.godot/imported/exit button.png-60f7a73dbd1f5583a446cf36fcba2cce.ctex"
+
+[node name="try again" type="Control" unique_id=2085626837]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_12vek")
+
+[node name="Panel" type="Panel" parent="." unique_id=1719508091]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1119.0
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a4j6f")
+
+[node name="Panel2" type="Panel" parent="." unique_id=132927098]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 328.0
+offset_top = 115.0
+offset_right = 766.0
+offset_bottom = 462.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_x4boq")
+
+[node name="try again button" type="TextureButton" parent="." unique_id=1176620826]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 244.0
+offset_right = 697.0
+offset_bottom = 304.0
+texture_normal = ExtResource("2_qrar5")
+
+[node name="Exit" type="TextureButton" parent="." unique_id=1593087143]
+layout_mode = 0
+offset_left = 478.99997
+offset_top = 325.00003
+offset_right = 679.17175
+offset_bottom = 385.80893
+scale = Vector2(0.89363253, 0.9702525)
+texture_normal = SubResource("CompressedTexture2D_68bym")
+ignore_texture_size = true
+stretch_mode = 3
+
+[connection signal="ready" from="Panel2" to="." method="_on_panel_2_ready"]
+[connection signal="pressed" from="try again button" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

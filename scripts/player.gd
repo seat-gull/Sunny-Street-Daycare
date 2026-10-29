@@ -4,7 +4,6 @@ extends CharacterBody2D
 var direction : Vector2 = Vector2(4, 4)
 var movement_locked: bool = false
 var start_position: Vector2
-
 @onready var dash = $dash
 const dashspeed = 800
 const dashlength = .1
@@ -61,9 +60,13 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	get_tree().change_scene_to_file("res://scenes/main menu.tscn")
+	textbox.animate_text("Uh Oh! You Died!","n")
+	await get_tree().create_timer(2).timeout
+	textbox.hide_textbox()
+	get_tree().change_scene_to_file("res://try_again.tscn")
 	velocity = Vector2.ZERO
 	global_position = start_position
 	health = 100
+
 	
 	
