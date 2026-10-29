@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://hxw7em3til1e"]
 
 [ext_resource type="Texture2D" uid="uid://cu7owqm7h6kum" path="res://assets/Start.png" id="1_7mewq"]
-[ext_resource type="Texture2D" uid="uid://c7qkls7f2jkm0" path="res://assets/menu background.png" id="1_vsw8r"]
 [ext_resource type="Texture2D" uid="uid://c6si58xpqow8l" path="res://assets/menu.png" id="2_km7eu"]
 
 [sub_resource type="GDScript" id="GDScript_gee14"]
@@ -13,8 +12,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scenes/game.tscn\")
@@ -23,8 +20,11 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 "
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xsilq"]
+load_path = "res://.godot/imported/menu background.png-60593f667da257af7ce2b6386bd7a3b4.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1vivr"]
-texture = ExtResource("1_vsw8r")
+texture = SubResource("CompressedTexture2D_xsilq")
 modulate_color = Color(0.5370987, 0.5370987, 0.5370987, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vrlf"]

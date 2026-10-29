@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgrwkcyoeatql"]
 
-[ext_resource type="Script" uid="uid://ffd5mtoc4jl6" path="res://scripts/playermovement.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://ffd5mtoc4jl6" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://runefw46l584" path="res://assets/lilguyspritesheet.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://deo58ofvkvesc" path="res://scenes/dash.tscn" id="3_qhqgy"]
 

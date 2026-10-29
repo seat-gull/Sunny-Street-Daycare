@@ -61,8 +61,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	textbox.animate_text("Lil guy died :(, thx for playing tho!", "n")
-	
+	get_tree().change_scene_to_file("res://scenes/main menu.tscn")
 	velocity = Vector2.ZERO
 	global_position = start_position
 	health = 100
