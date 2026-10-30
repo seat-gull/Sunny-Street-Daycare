@@ -1,15 +1,90 @@
 [gd_scene format=3 uid="uid://d0wjfyonnnqf3"]
 
-[node name="hotbar" type="HBoxContainer" unique_id=296212872]
-anchors_preset = 13
+[ext_resource type="Texture2D" uid="uid://bbplyf3ehhuc4" path="res://assets/hotbar slots.webp" id="1_yj1xu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vivr"]
+atlas = ExtResource("1_yj1xu")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vrlf"]
+atlas = ExtResource("1_yj1xu")
+region = Rect2(480, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5gy4"]
+atlas = ExtResource("1_yj1xu")
+region = Rect2(960, 0, 480, 480)
+
+[node name="hotbar" type="Control" unique_id=712752605]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=164810319]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -1901.5
-offset_top = -23.5
-offset_right = 1893.5
-offset_bottom = 23.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="slot 1" type="TextureRect" parent="HBoxContainer" unique_id=13995381]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1vivr")
+
+[node name="item icon" type="TextureRect" parent="HBoxContainer/slot 1" unique_id=1049149416]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8799994, 1)
-size_flags_horizontal = 3
+
+[node name="slot 2" type="TextureRect" parent="HBoxContainer" unique_id=708227402]
+layout_mode = 2
+texture = SubResource("AtlasTexture_8vrlf")
+
+[node name="item icon" type="TextureRect" parent="HBoxContainer/slot 2" unique_id=2131966383]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="slot 3" type="TextureRect" parent="HBoxContainer" unique_id=1697365065]
+layout_mode = 2
+texture = SubResource("AtlasTexture_v5gy4")
+
+[node name="item icon" type="TextureRect" parent="HBoxContainer/slot 3" unique_id=1481925407]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

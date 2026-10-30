@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cww536ynjjuww" path="res://scenes/blobby.tscn" id="7_gee14"]
 [ext_resource type="Script" uid="uid://bacodlv4loo6a" path="res://scripts/doors.gd" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dqxf00fjysulc" path="res://scenes/key.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://d0wjfyonnnqf3" path="res://scenes/hotbar.tscn" id="9_0tnpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xduwj"]
 size = Vector2(18, 40.5)
@@ -277,6 +278,9 @@ offset_left = 38.0
 offset_top = 31.0
 offset_right = 278.0
 offset_bottom = 66.0
+
+[node name="hotbar" parent="CanvasLayer/UI" unique_id=712752605 instance=ExtResource("9_0tnpc")]
+layout_mode = 0
 
 [connection signal="pressed" from="note" to="doors/interactable door" method="_on_note_pressed"]
 [connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_pressed"]
