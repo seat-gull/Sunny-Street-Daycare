@@ -262,3 +262,19 @@ textbox = NodePath("../textbox")
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="note" type="TextureButton" parent="." unique_id=1482953173]
+offset_left = 320.0
+offset_top = 98.0
+offset_right = 332.0
+offset_bottom = 111.0
+
+[node name="note2" type="TextureButton" parent="." unique_id=2045739022]
+offset_left = -31.0
+offset_top = 113.0
+offset_right = -19.0
+offset_bottom = 126.0
+
+[connection signal="pressed" from="note" to="doors/interactable door" method="_on_note_pressed"]
+[connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_pressed"]
+[connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_2_pressed"]

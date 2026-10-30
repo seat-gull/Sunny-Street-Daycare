@@ -61,3 +61,16 @@ func _on_body_shape_exited(
 		player_ref = null
 		current_door = ""
 		textbox.hide_textbox()
+
+
+
+func _on_note_pressed() -> void:
+	textbox.animate_text("HELP ME","n")
+	await get_tree().create_timer(2.5).timeout
+	textbox.hide_textbox()
+
+
+func _on_note_2_pressed() -> void:
+	textbox.animate_text("AHHHHHH!","n")
+	await get_tree().create_timer(2.5).timeout
+	textbox.hide_textbox()
