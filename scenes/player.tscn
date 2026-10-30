@@ -63,17 +63,26 @@ region = Rect2(192, 64, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_qbdty"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_onrkg")
 }, {
-"duration": 1.2,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_i3pqv")
 }, {
-"duration": 1.5,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_hqtel")
 }, {
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_onrkg")
 }],
 "loop": 1,
 "name": &"dash",
@@ -150,3 +159,11 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=411162563]
 zoom = Vector2(3, 3)
+
+[node name="pencil" type="Node2D" parent="." unique_id=1495914732]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="pencil" unique_id=1884677433]
+
+[node name="Area2D" type="Area2D" parent="pencil" unique_id=320731]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pencil/Area2D" unique_id=2003548184]
