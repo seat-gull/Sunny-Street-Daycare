@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bysvbephmog0e"
-path="res://.godot/imported/hotbar slot.png-0c332eb5fbe448d3552e7e8cb49e2030.ctex"
+uid="uid://dfwvkdau4jubk"
+path="res://.godot/imported/pencil.webp-18584487e5524652004dc36db7992385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hotbar slot.png"
-dest_files=["res://.godot/imported/hotbar slot.png-0c332eb5fbe448d3552e7e8cb49e2030.ctex"]
+source_file="res://assets/pencil.webp"
+dest_files=["res://.godot/imported/pencil.webp-18584487e5524652004dc36db7992385.ctex"]
 
 [params]
 
