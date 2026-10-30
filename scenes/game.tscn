@@ -276,7 +276,7 @@ layout_mode = 0
 offset_left = 38.0
 offset_top = 31.0
 offset_right = 278.0
-offset_bottom = 58.0
+offset_bottom = 66.0
 
 [connection signal="pressed" from="note" to="doors/interactable door" method="_on_note_pressed"]
 [connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_pressed"]
