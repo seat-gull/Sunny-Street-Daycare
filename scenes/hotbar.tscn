@@ -1,5 +1,15 @@
 [gd_scene format=3 uid="uid://d0wjfyonnnqf3"]
 
 [node name="hotbar" type="HBoxContainer" unique_id=296212872]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1901.5
+offset_top = -23.5
+offset_right = 1893.5
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8799994, 1)
+size_flags_horizontal = 3

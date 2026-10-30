@@ -29,6 +29,9 @@ func open_red_door() -> void:
 	if tilemap:
 		tilemap.set_cell(Vector2i(34, 12),1,Vector2i(6,9))
 		tilemap.set_cell(Vector2i(34, 11),1,Vector2i(6,8))
+		textbox.animate_text("It opens!","n")
+		await get_tree().create_timer(1).timeout
+		textbox.hide_textbox()
 	var red_door_shape = get_node_or_null("red door")
 	if red_door_shape:
 		red_door_shape.set_deferred("disabled",true)
