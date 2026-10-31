@@ -5,20 +5,24 @@
 [sub_resource type="GDScript" id="GDScript_1vivr"]
 script/source = "extends Area2D
 @export var textbox: CanvasLayer
+@export var slotIcon: Texture2D
 
 func _ready() -> void:
 	body_entered.connect(pickup)
+
 	
 func pickup(body: Node2D) -> void:
 	if body.is_in_group(\"player\"):
 		if body.key_is_in_inv == false:
-			textbox.animate_text(\"You got a red key!\",\"n\")
-			body.key_is_in_inv = true
-			visible = false
-			await get_tree().create_timer(3).timeout
-			textbox.hide_textbox()
-			queue_free()
+			var slot = body.hotbar.addItem(slotIcon)
 			
+			if slot != -1:
+				textbox.animate_text(\"You got a red key!\",\"n\")
+				body.key_is_in_inv = true
+				visible = false
+				await get_tree().create_timer(3).timeout
+				textbox.hide_textbox()
+				queue_free()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fttkb"]
@@ -200,7 +204,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8vrlf"]
 radius = 64.12488
 
-[node name="key" type="Area2D" unique_id=498507629]
+[node name="redkey" type="Area2D" unique_id=498507629]
 scale = Vector2(0.8, 0.8)
 script = SubResource("GDScript_1vivr")
 

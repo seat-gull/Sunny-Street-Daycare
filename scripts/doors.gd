@@ -2,7 +2,6 @@ extends Area2D
 
 @export var textbox: CanvasLayer
 @export var tilemap: TileMapLayer
-#
 
 var player_nearby: bool = false
 var door_open: bool = false

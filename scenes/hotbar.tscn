@@ -39,6 +39,15 @@ func select_slot(slotNumber):
 	slotSelected.emit(slotNumber)
 	update_hotbar()
 
+func addItem(item_icon: Texture2D) -> int:
+	for i in range(itemIcons.size()):
+		if itemIcons[i].texture == null:
+			itemIcons[i].texture = item_icon
+			itemIcons[i].custom_minimum_size = Vector2(40, 40)
+			return i + 1
+			
+	return -1
+
 func update_hotbar(): 
 	for i in range(len(slots)):
 		if i + 1 == selectedSlot: 
