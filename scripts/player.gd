@@ -35,7 +35,7 @@ func _physics_process(delta:float) -> void:
 		move_and_slide()
 		return
 
-	if blobby.has_triggered:
+	if blobby.has_triggered and !blobby.isDead:
 		arrow.show()
 		arrow.look_at(blobby.global_position)
 	else:

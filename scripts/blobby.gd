@@ -10,10 +10,12 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @export var start_height: float = -15
 @export var angle_spread: float = 5
 @onready var redkey = $redkey
+@onready var healthbar = $HealthBar
 
 var height_pattern = [20, 30, 40, 50, 60, 50, 40, 30, 20]
 var shot_count: int = 0
 var has_triggered: bool = false
+var maxhealth = 50
 var health = 50
 var isDead = false
 
@@ -26,6 +28,7 @@ func _ready() -> void:
 	shoot_timer.stop()
 	shoot_timer.wait_time = shooter_timer_wait_time
 	trigger_area.body_entered.connect(_on_player_entered)
+	healthbar.init_health(maxhealth)
 	
 
 #detect player enter boss area
@@ -70,6 +73,7 @@ func _on_shoot_timer_timeout() -> void:
 
 func takeDamage(amount: int) -> void:
 	health = max(health - amount, 0)
+	healthbar._set_health(health)
 	print("Blobby health: ", health)
 	
 	if health <= 0:
@@ -91,5 +95,6 @@ func die() -> void:
 	
 	redkey.show()
 	redkey.set_deferred("monitoring", true)
-	queue_free()
+	healthbar.hide()
+	collision_layer = false
 	

@@ -6,6 +6,8 @@
 script/source = "extends Control
 
 @export var pencilIcon: Texture2D
+@export var redKeyIcon: Texture2D
+@export var goldKeyIcon: Texture2D
 
 signal slotSelected(slotNumber)
 
@@ -39,13 +41,15 @@ func select_slot(slotNumber):
 	slotSelected.emit(slotNumber)
 	update_hotbar()
 
-func addItem(item_icon: Texture2D) -> int:
+func addItem(item_icon) -> bool:
 	for i in range(itemIcons.size()):
 		if itemIcons[i].texture == null:
-			itemIcons[i].texture = item_icon
-			return i + 1
-			
-	return -1
+			if item_icon == \"redkey\":
+				itemIcons[i].texture = redKeyIcon
+			elif item_icon == \"goldkey\":
+				itemIcons[i].texture = goldKeyIcon
+			return true
+	return false
 
 func update_hotbar(): 
 	for i in range(len(slots)):
@@ -114,6 +118,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_8vrlf")
 
 [node name="item icon" type="TextureRect" parent="HBoxContainer/slot 2" unique_id=2131966383]
+custom_minimum_size = Vector2(151, 151)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -127,12 +132,14 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+expand_mode = 3
 
 [node name="slot 3" type="TextureRect" parent="HBoxContainer" unique_id=1697365065]
 layout_mode = 2
 texture = SubResource("AtlasTexture_v5gy4")
 
 [node name="item icon" type="TextureRect" parent="HBoxContainer/slot 3" unique_id=1481925407]
+custom_minimum_size = Vector2(151, 151)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,3 +153,4 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+expand_mode = 3

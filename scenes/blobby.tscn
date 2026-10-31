@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c7dulym3vhlf2" path="res://assets/bullet textures/bullet6.tres" id="7_homft"]
 [ext_resource type="Texture2D" uid="uid://dcssfg0lc16pb" path="res://assets/bullet textures/bullet7.tres" id="8_sit0n"]
 [ext_resource type="PackedScene" uid="uid://dqxf00fjysulc" path="res://scenes/redkey.tscn" id="10_sit0n"]
+[ext_resource type="PackedScene" uid="uid://chpw1ieoo27vk" path="res://scenes/health_bar.tscn" id="11_n6aa4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7f7r"]
 atlas = ExtResource("2_nwil0")
@@ -93,5 +94,11 @@ shape = SubResource("CircleShape2D_1vivr")
 
 [node name="redkey" parent="." unique_id=498507629 instance=ExtResource("10_sit0n")]
 scale = Vector2(0.2, 0.2)
+
+[node name="HealthBar" parent="." unique_id=1791631509 instance=ExtResource("11_n6aa4")]
+offset_left = -10.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -27.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
