@@ -2,14 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://c6si58xpqow8l" path="res://assets/menu.png" id="1_a4j6f"]
 [ext_resource type="Texture2D" uid="uid://5nok63ocgsw3" path="res://assets/Try again.png" id="2_qrar5"]
+[ext_resource type="PackedScene" uid="uid://dwwow6s78ss53" path="res://scenes/textbox.tscn" id="3_8acqh"]
 
 [sub_resource type="GDScript" id="GDScript_12vek"]
 script/source = "extends Control
+@export var textbox: CanvasLayer
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
+func _ready() -> void:
+	textbox.animate_text(\"You died and didn't make it out of daycare\",\"n\")
+	await get_tree().create_timer(2.5).timeout
+	textbox.hide_textbox()
 
 func _on_try_again_button_pressed() -> void:
 	get_tree().change_scene_to_file(\"res://scenes/game.tscn\")
@@ -24,7 +26,7 @@ load_path = "res://.godot/imported/menu background.png-60593f667da257af7ce2b6386
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a4j6f"]
 texture = SubResource("CompressedTexture2D_xsilq")
-modulate_color = Color(0.5370987, 0.5370987, 0.5370987, 1)
+modulate_color = Color(0.90588236, 0.20392157, 0.30980393, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4boq"]
 texture = ExtResource("1_a4j6f")
@@ -33,12 +35,13 @@ modulate_color = Color(1, 1, 1, 0.54901963)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_68bym"]
 load_path = "res://.godot/imported/exit button.png-60f7a73dbd1f5583a446cf36fcba2cce.ctex"
 
-[node name="try again" type="Control" unique_id=2085626837]
+[node name="try again" type="Control" unique_id=2085626837 node_paths=PackedStringArray("textbox")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = SubResource("GDScript_12vek")
+textbox = NodePath("textbox")
 
 [node name="Panel" type="Panel" parent="." unique_id=1719508091]
 layout_mode = 1
@@ -84,6 +87,8 @@ scale = Vector2(0.89363253, 0.9702525)
 texture_normal = SubResource("CompressedTexture2D_68bym")
 ignore_texture_size = true
 stretch_mode = 3
+
+[node name="textbox" parent="." unique_id=1768967301 instance=ExtResource("3_8acqh")]
 
 [connection signal="ready" from="Panel2" to="." method="_on_panel_2_ready"]
 [connection signal="pressed" from="try again button" to="." method="_on_try_again_button_pressed"]

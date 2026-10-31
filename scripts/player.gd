@@ -74,13 +74,10 @@ func take_damage(amount: int) -> void:
 		die()
 
 func die() -> void:
-	textbox.animate_text("Uh Oh! You Died!","n")
-	await get_tree().create_timer(2).timeout
-	textbox.hide_textbox()
-	get_tree().change_scene_to_file("res://try_again.tscn")
-	velocity = Vector2.ZERO
-	global_position = start_position
-	health = 100
+	queue_free()
+	get_tree().change_scene_to_file("res://scenes/try_again.tscn")
+	
+
 
 	
 	
