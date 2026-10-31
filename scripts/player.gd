@@ -1,9 +1,13 @@
 extends CharacterBody2D
+
 @export var textbox: CanvasLayer
 @export var movement_speed : float = 150
+@export var hotbar: Control
+
 var direction : Vector2 = Vector2(4, 4)
 var movement_locked: bool = false
 var start_position: Vector2
+
 @onready var dash = $dash
 const dashspeed = 800
 const dashlength = .1
@@ -11,10 +15,13 @@ const dashlength = .1
 var max_health: int = 100
 var health: int = 100
 
+@onready var pencil = $pencil
 var key_is_in_inv: bool = false
 
 func _ready() -> void:
 	start_position = global_position
+	pencil.visible = true
+	hotbar.slotSelected.connect(_on_slot_selected)
 
 func _physics_process(delta:float) -> void:
 	if movement_locked:
@@ -33,8 +40,12 @@ func _physics_process(delta:float) -> void:
 	#flipping 
 	if direction.x > 0:
 		$sprite.flip_h = false
+		pencil.scale.x = 1
+		pencil.position.x = 0
 	elif direction.x < 0:
 		$sprite.flip_h = true
+		pencil.scale.x = -1
+		pencil.position.x = 10
 	
 	if dash.is_dashing():
 		$sprite.animation = "dash"
@@ -50,6 +61,9 @@ func _physics_process(delta:float) -> void:
 			$sprite.animation = "idle"
 		
 	move_and_slide()
+	
+func _on_slot_selected(slotNumber):
+	pencil.visible = (slotNumber == 1)
 	
 	
 func take_damage(amount: int) -> void:

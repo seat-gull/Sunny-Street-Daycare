@@ -5,12 +5,20 @@
 [sub_resource type="GDScript" id="GDScript_yj1xu"]
 script/source = "extends Control
 
-var selectedSlot = 1
+@export var pencilIcon: Texture2D
+
+signal slotSelected(slotNumber)
+
+var selectedSlot: int = 1
 
 @onready var slots = [$\"HBoxContainer/slot 1\", $\"HBoxContainer/slot 2\", $\"HBoxContainer/slot 3\"]
 @onready var itemIcons = [$\"HBoxContainer/slot 1/item icon\", $\"HBoxContainer/slot 2/item icon\", $\"HBoxContainer/slot 3/item icon\"]
 
 func _ready() -> void:
+	itemIcons[0].texture = pencilIcon
+	for i in range(len(slots)):
+		slots[i].gui_input.connect(_on_slot_clicked.bind(i + 1))
+		
 	update_hotbar()
 
 func _input(event: InputEvent) -> void:
@@ -21,8 +29,14 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed(\"slot3\"):
 		select_slot(3)
 
+func _on_slot_clicked(event: InputEvent, slotNumber: int):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			select_slot(slotNumber)
+
 func select_slot(slotNumber):
 	selectedSlot = slotNumber
+	slotSelected.emit(slotNumber)
 	update_hotbar()
 
 func update_hotbar(): 
@@ -85,6 +99,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="slot 2" type="TextureRect" parent="HBoxContainer" unique_id=708227402]
 layout_mode = 2
@@ -103,6 +118,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="slot 3" type="TextureRect" parent="HBoxContainer" unique_id=1697365065]
 layout_mode = 2
@@ -121,3 +137,4 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

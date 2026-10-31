@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bacodlv4loo6a" path="res://scripts/doors.gd" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://dqxf00fjysulc" path="res://scenes/key.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://d0wjfyonnnqf3" path="res://scenes/hotbar.tscn" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://dfwvkdau4jubk" path="res://assets/pencil.webp" id="10_vtaks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xduwj"]
 size = Vector2(18, 40.5)
@@ -194,6 +195,10 @@ sources/1 = SubResource("TileSetAtlasSource_lnu2h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4g4"]
 size = Vector2(52, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj1xu"]
+atlas = ExtResource("10_vtaks")
+region = Rect2(0, 0, 151, 151)
+
 [node name="game" type="Node2D" unique_id=884617510]
 
 [node name="doors" type="Node" parent="." unique_id=1623868773]
@@ -254,9 +259,10 @@ offset_bottom = 126.0
 tooltip_text = "Click to read note..."
 mouse_default_cursor_shape = 2
 
-[node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox") instance=ExtResource("1_uwrxv")]
+[node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox", "hotbar") instance=ExtResource("1_uwrxv")]
 position = Vector2(-65, 139)
 textbox = NodePath("../textbox")
+hotbar = NodePath("../CanvasLayer/UI/hotbar")
 
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(3, 3)
@@ -285,7 +291,8 @@ offset_left = 600.0
 offset_top = 600.0
 offset_right = 640.0
 offset_bottom = 640.0
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.2, 0.2)
+pencilIcon = SubResource("AtlasTexture_yj1xu")
 
 [connection signal="pressed" from="note" to="doors/interactable door" method="_on_note_pressed"]
 [connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_pressed"]
