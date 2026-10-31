@@ -281,6 +281,11 @@ offset_bottom = 66.0
 
 [node name="hotbar" parent="CanvasLayer/UI" unique_id=712752605 instance=ExtResource("9_0tnpc")]
 layout_mode = 0
+offset_left = 600.0
+offset_top = 600.0
+offset_right = 640.0
+offset_bottom = 640.0
+scale = Vector2(0.15, 0.15)
 
 [connection signal="pressed" from="note" to="doors/interactable door" method="_on_note_pressed"]
 [connection signal="pressed" from="note2" to="doors/interactable door" method="_on_note_pressed"]

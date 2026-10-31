@@ -2,6 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://bbplyf3ehhuc4" path="res://assets/hotbar slots.webp" id="1_yj1xu"]
 
+[sub_resource type="GDScript" id="GDScript_yj1xu"]
+script/source = "extends Control
+
+var selectedSlot = 1
+
+@onready var slots = [$\"HBoxContainer/slot 1\", $\"HBoxContainer/slot 2\", $\"HBoxContainer/slot 3\"]
+@onready var itemIcons = [$\"HBoxContainer/slot 1/item icon\", $\"HBoxContainer/slot 2/item icon\", $\"HBoxContainer/slot 3/item icon\"]
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"slot1\"):
+		select_slot(1)
+	elif event.is_action_pressed(\"slot2\"):
+		select_slot(2)
+	elif event.is_action_pressed(\"slot3\"):
+		select_slot(3)
+
+func select_slot(slotNumber):
+	selectedSlot = slotNumber
+	print(selectedSlot)
+	
+"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vivr"]
 atlas = ExtResource("1_yj1xu")
 region = Rect2(0, 0, 480, 480)
@@ -19,6 +41,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = SubResource("GDScript_yj1xu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=164810319]
 layout_mode = 1
