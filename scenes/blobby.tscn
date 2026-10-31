@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://derp0jedyrl73" path="res://assets/bullet textures/bullet5.tres" id="6_n6aa4"]
 [ext_resource type="Texture2D" uid="uid://c7dulym3vhlf2" path="res://assets/bullet textures/bullet6.tres" id="7_homft"]
 [ext_resource type="Texture2D" uid="uid://dcssfg0lc16pb" path="res://assets/bullet textures/bullet7.tres" id="8_sit0n"]
+[ext_resource type="PackedScene" uid="uid://dqxf00fjysulc" path="res://scenes/redkey.tscn" id="10_sit0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7f7r"]
 atlas = ExtResource("2_nwil0")
@@ -56,9 +57,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3pgvb")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"dying",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -81,14 +82,16 @@ bullet_textures = Array[Texture2D]([ExtResource("2_x31or"), ExtResource("3_kd0ry
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=467976783]
 sprite_frames = SubResource("SpriteFrames_1vivr")
-animation = &"idle"
+animation = &"dying"
 autoplay = "idle"
-frame_progress = 0.4167937
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754747847]
 position = Vector2(5, 1)
 shape = SubResource("CircleShape2D_1vivr")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1963709608]
+
+[node name="redkey" parent="." unique_id=498507629 instance=ExtResource("10_sit0n")]
+scale = Vector2(0.2, 0.2)
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -3,12 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bgrwkcyoeatql" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dwwow6s78ss53" path="res://scenes/textbox.tscn" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://bhfmsqtq7f57b" path="res://assets/tilesheet.png" id="3_lnu2h"]
-[ext_resource type="Texture2D" uid="uid://bhbocerojhlgl" path="res://assets/red key black outline.png" id="5_kvpfn"]
 [ext_resource type="Script" uid="uid://bhqi8dnjbtu1y" path="res://scripts/ui.gd" id="5_p57ef"]
 [ext_resource type="PackedScene" uid="uid://chpw1ieoo27vk" path="res://scenes/health_bar.tscn" id="6_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://cww536ynjjuww" path="res://scenes/blobby.tscn" id="7_gee14"]
 [ext_resource type="Script" uid="uid://bacodlv4loo6a" path="res://scripts/doors.gd" id="7_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://dqxf00fjysulc" path="res://scenes/redkey.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://d0wjfyonnnqf3" path="res://scenes/hotbar.tscn" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dfwvkdau4jubk" path="res://assets/pencil.webp" id="10_vtaks"]
 
@@ -196,10 +194,6 @@ sources/1 = SubResource("TileSetAtlasSource_lnu2h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4g4"]
 size = Vector2(52, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wlkun"]
-atlas = ExtResource("5_kvpfn")
-region = Rect2(354, 0, 31, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yj1xu"]
 atlas = ExtResource("10_vtaks")
 region = Rect2(0, 0, 151, 151)
@@ -240,12 +234,6 @@ textbox = NodePath("../textbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blobby/TriggerArea" unique_id=1014281672]
 position = Vector2(-695, 31)
 shape = SubResource("RectangleShape2D_ie4g4")
-
-[node name="key" parent="." unique_id=498507629 node_paths=PackedStringArray("textbox") instance=ExtResource("8_gee14")]
-position = Vector2(785, 5)
-scale = Vector2(0.2, 0.2)
-textbox = NodePath("../textbox")
-slotIcon = SubResource("AtlasTexture_wlkun")
 
 [node name="note" type="TextureButton" parent="." unique_id=1482953173]
 offset_left = 320.0
@@ -291,10 +279,11 @@ pencilIcon = SubResource("AtlasTexture_yj1xu")
 
 [node name="textbox" parent="." unique_id=1108137771 instance=ExtResource("2_yqjtg")]
 
-[node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox", "hotbar") instance=ExtResource("1_uwrxv")]
+[node name="player" parent="." unique_id=888699418 node_paths=PackedStringArray("textbox", "hotbar", "blobby") instance=ExtResource("1_uwrxv")]
 position = Vector2(-65, 139)
 textbox = NodePath("../textbox")
 hotbar = NodePath("../CanvasLayer/UI/hotbar")
+blobby = NodePath("../blobby")
 
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(3, 3)
