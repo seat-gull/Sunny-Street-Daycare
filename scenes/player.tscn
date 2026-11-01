@@ -137,11 +137,12 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auskg"]
-size = Vector2(12, 18.5)
+size = Vector2(12, 23.5)
 
 [sub_resource type="GDScript" id="GDScript_wlkun"]
 script/source = "extends Node2D
 
+@onready var sprite = $AnimatedSprite2D
 @onready var hitbox: Area2D = $hitbox
 
 var attacking: bool = false
@@ -156,13 +157,15 @@ func _ready() -> void:
 func attack() -> void:
 	if attacking:
 		return
-	
+	sprite.play(\"slash\")
+	sprite.rotate(PI/3)
 	attacking = true
 	hit_targets.clear()
 	hitbox.monitoring = true
 	
 	await get_tree().create_timer(0.2).timeout
 	hitbox.monitoring = false
+	sprite.rotate(-PI/3)
 	attacking = false
 
 
@@ -203,7 +206,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fjrip")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"slash",
 "speed": 5.0
 }]
@@ -224,7 +227,7 @@ animation = &"dash"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1290063905]
-position = Vector2(7, 10.25)
+position = Vector2(7, 7.75)
 shape = SubResource("RectangleShape2D_auskg")
 
 [node name="dash" parent="." unique_id=1704637985 instance=ExtResource("3_qhqgy")]
@@ -242,6 +245,7 @@ script = SubResource("GDScript_wlkun")
 position = Vector2(13, 11)
 scale = Vector2(0.07, 0.07)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
+animation = &"slash"
 
 [node name="hitbox" type="Area2D" parent="pencil" unique_id=320731]
 monitoring = false
@@ -252,5 +256,6 @@ rotation = 0.7574729
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="blobby pointer" type="Sprite2D" parent="." unique_id=527979038]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_qlg0r")
