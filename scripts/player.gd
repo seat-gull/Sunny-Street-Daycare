@@ -99,11 +99,13 @@ func _physics_process(delta:float) -> void:
 func _on_slot_selected(slotNumber):
 	pencil.visible = false
 	redKey.visible = false
-	#goldKey.visible = false
+	goldKey.visible = false
 	if slotNumber == 1:
 		held_item = pencil
 	elif slotNumber == 2 and hasRedKey == true:
 		held_item = redKey
+	elif slotNumber == 3 and hasGoldKey == true:
+		held_item = goldKey
 	else:
 		held_item = null
 	
