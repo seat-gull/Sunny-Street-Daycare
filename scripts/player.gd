@@ -10,6 +10,10 @@ extends CharacterBody2D
 @export var hotbar: Control
 @export var blobby: Node2D
 
+var regen_amount: int = 5
+var regen_interval: float = 2.5
+var regen_timer: float = 0.0
+
 var direction : Vector2 = Vector2(4, 4)
 var movement_locked: bool = false
 var start_position: Vector2
@@ -29,6 +33,14 @@ func _ready() -> void:
 	hotbar.slotSelected.connect(_on_slot_selected)
 
 func _physics_process(delta:float) -> void:
+	if health < max_health: 
+		regen_timer += delta
+		if regen_timer >= regen_interval:
+			health = mini(health + regen_amount, max_health)
+			regen_timer = 0.0
+	else:
+		regen_timer = 0.0
+	
 	if movement_locked:
 		velocity = Vector2.ZERO
 		sprite.animation = "idle"
@@ -82,14 +94,13 @@ func _on_slot_selected(slotNumber):
 	
 func take_damage(amount: int) -> void:
 	health = clampi(health - amount, 0, max_health)
+	regen_timer = 0.0
 
 	if health <= 0:
 		die()
 
 func die() -> void:
-	queue_free()
-	get_tree().change_scene_to_file("res://scenes/try_again.tscn")
-	
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/try_again.tscn")
 
 
 	

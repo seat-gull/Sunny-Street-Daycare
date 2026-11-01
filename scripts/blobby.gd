@@ -11,11 +11,14 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var healthbar = $HealthBar
 
 var shooter_timer_wait_time: float = 0.35
+var teleport_min: Vector2 = Vector2(50, 50)
+var teleport_max: Vector2 = Vector2(650, 0)
 
 var has_triggered: bool = false
 
 var maxhealth = 50
 var health = 50
+var next_teleport_health = 40
 var isDead = false
 
 @export var bullet_textures: Array[Texture2D] = []
@@ -30,8 +33,9 @@ func _ready() -> void:
 	healthbar.init_health(maxhealth)
 
 func _process(delta: float) -> void:
-	sprite.look_at(player.global_position)
-	sprite.rotation += PI
+	if has_triggered and !isDead:
+		sprite.look_at(player.global_position)
+		sprite.rotation += PI
 
 #detect player enter boss area
 func _on_player_entered(body: Node2D) -> void:
@@ -75,6 +79,13 @@ func takeDamage(amount: int) -> void:
 	
 	if health <= 0:
 		die()
+	
+	if health <= next_teleport_health:
+		teleport()
+		next_teleport_health -= 10
+
+func teleport() -> void:
+	global_position = Vector2(randf_range(teleport_min.x, teleport_max.x),randf_range(teleport_min.y, teleport_max.y))
 
 func die() -> void:
 	if isDead:
@@ -84,7 +95,7 @@ func die() -> void:
 	shoot_timer.stop()
 	trigger_area.set_deferred("monitoring", false)
 	
-	textbox.animate_text("no you got the red key!", "Blobby")
+	textbox.animate_text("blehhhh", "Blobby")
 	sprite.play("dying")
 	await sprite.animation_finished
 	remove_child(redkey)
