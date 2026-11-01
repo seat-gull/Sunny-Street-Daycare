@@ -7,7 +7,7 @@
 [sub_resource type="GDScript" id="GDScript_dinhu"]
 script/source = "extends AnimatableBody2D
 
-const bullet_scene = preload(\"res://scenes/bullet.tscn\")
+const bullet_scene = preload(\"res://scenes/mbullet.tscn\")
 
 @onready var sprite = $animation
 @onready var shoot_timer = $ShootTimer
@@ -42,7 +42,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if has_triggered and !isDead:
 		sprite.look_at(player.global_position)
-		sprite.rotation += PI
+		sprite.rotation += PI/2
 
 #detect player enter boss area
 func _on_player_entered(body: Node2D) -> void:

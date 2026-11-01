@@ -1,6 +1,6 @@
 extends AnimatableBody2D
 
-const bullet_scene = preload("res://scenes/bullet.tscn")
+const bullet_scene = preload("res://scenes/bbullet.tscn")
 
 @onready var sprite = $animation
 @onready var shoot_timer = $ShootTimer

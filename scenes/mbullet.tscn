@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dg1otdlfwond7"]
+
+[ext_resource type="Script" uid="uid://bg17x878xqroc" path="res://scripts/mbullet.gd" id="1_hql7t"]
+
+[node name="mbullet" type="Node2D" unique_id=1546018961]
+script = ExtResource("1_hql7t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2003006631]
+
+[node name="KillTimer" type="Timer" parent="." unique_id=1101628947]
+wait_time = 10.0
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
