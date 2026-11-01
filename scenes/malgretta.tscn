@@ -14,6 +14,7 @@ const bullet_scene = preload(\"res://scenes/mbullet.tscn\")
 @export var player: CharacterBody2D
 @onready var sprite = $animation
 @onready var shoot_timer = $ShootTimer
+@onready var rotater = $rotater
 @onready var trigger_area: Area2D = $TriggerArea
 @onready var goldkey = $goldkey
 @onready var healthbar = $HealthBar
@@ -30,7 +31,18 @@ var health = 100
 var isDead = false
 
 func _ready() -> void:
-	var step = 2 * PI
+	var step = 2 * PI / spawn_point_count
+	
+	for i in range(spawn_point_count):
+		var spawn_point = Node2D.new()
+		var pos = Vector2(radius,0).rotated(step*1)
+		spawn_point.position = pos
+		spawn_point.rotation = pos.angle()
+		rotater.add_child(spawn_point)
+	
+	shoot_timer.stop()
+	shoot_timer.wait_time = shooter_timer_wait_time
+	
 	
 	goldkey.textbox = textbox
 	goldkey.monitoring = false
@@ -40,6 +52,9 @@ func _ready() -> void:
 	healthbar.init_health(maxhealth)
 
 func _process(delta: float) -> void:
+	var new_rotation = rotater.rotation_degrees * rotate_speed * delta
+	rotater.rotation_degrees = fmod(new_rotation, 360)
+	
 	if has_triggered and !isDead:
 		sprite.look_at(player.global_position)
 		sprite.rotation += PI/2
@@ -50,12 +65,10 @@ func _on_player_entered(body: Node2D) -> void:
 		return
 
 	has_triggered = true
-	print(\"entered\")
-
 	trigger_area.set_deferred(\"monitoring\", false)
 	body.movement_locked = true
-	textbox.animate_text(\"Thanks for coming to daycare! You'll be a delicious snack!\", \"Malgretta\")
-	await get_tree().create_timer(3.5).timeout
+	textbox.animate_text(\"So you murdered Blobby? This. Is. Penance.\", \"Malgretta\")
+	await get_tree().create_timer(3).timeout
 	textbox.hide_textbox()
 	
 	if is_instance_valid(body):
@@ -63,17 +76,12 @@ func _on_player_entered(body: Node2D) -> void:
 	shoot_timer.start()
 
 func _on_shoot_timer_timeout() -> void:
-
-	var bullet = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	
-	bullet.global_position = global_position
-	bullet.global_rotation = bullet.global_position.direction_to(player.global_position).angle()
-	
-	var visual_angle = randf_range(0, TAU)
-	bullet.set_sprite_rotation(visual_angle)
-
-	if bullet_textures.size() > 0:
+	for s in rotater.get_children():
+		var bullet = bullet_scene.instantiate()
+		get_tree().current_scene.add_child(bullet)
+		bullet.position = s.global_position
+		bullet.rotation = s.global_rotation
+			
 		var texture = bullet_textures.pick_random()
 		bullet.set_bullet_texture(texture)
 
@@ -90,7 +98,6 @@ func die() -> void:
 		
 	isDead = true
 	shoot_timer.stop()
-	trigger_area.set_deferred(\"monitoring\", false)
 	
 	textbox.animate_text(\"blehhhhhh\", \"Malgretta\")
 	sprite.global_rotation = 0
@@ -105,7 +112,6 @@ func die() -> void:
 	goldkey.set_deferred(\"monitoring\", true)
 	healthbar.hide()
 	collision_layer = false
-	
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7f7r"]

@@ -266,7 +266,7 @@ rotation = 0.7574729
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="blobby pointer" type="Sprite2D" parent="." unique_id=527979038]
-position = Vector2(-1.9999999, 1.9999999)
+position = Vector2(6, -28)
 scale = Vector2(0.24035089, 0.24035087)
 texture = ExtResource("5_tuyoq")
 

@@ -65,9 +65,8 @@ func _on_shoot_timer_timeout() -> void:
 	var visual_angle = randf_range(0, TAU)
 	bullet.set_sprite_rotation(visual_angle)
 
-	if bullet_textures.size() > 0:
-		var texture = bullet_textures.pick_random()
-		bullet.set_bullet_texture(texture)
+	var texture = bullet_textures.pick_random()
+	bullet.set_bullet_texture(texture)
 
 func takeDamage(amount: int) -> void:
 	health = max(health - amount, 0)
@@ -89,7 +88,6 @@ func die() -> void:
 		
 	isDead = true
 	shoot_timer.stop()
-	trigger_area.set_deferred("monitoring", false)
 	
 	textbox.animate_text("blehhhhhh", "Blobby")
 	sprite.global_rotation = 0

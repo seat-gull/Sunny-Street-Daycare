@@ -33,9 +33,9 @@ var held_item: Node2D = null
 
 func _ready() -> void:
 	start_position = global_position
-	arrow.position = Vector2(30, -30)
 	hotbar.slotSelected.connect(_on_slot_selected)
 	_on_slot_selected(1)
+	arrow.hide()
 
 func _physics_process(delta:float) -> void:
 	#flipping 
