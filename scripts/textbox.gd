@@ -11,31 +11,27 @@ const CHAR_READ_RATE= 0.02
 var text_tween: Tween
 
 func _ready() -> void:
+	start_symbol.text = "*"
+	end_symbol.text = "*"
 	hide_textbox()
 
 func hide_textbox() -> void:
 	if text_tween and text_tween.is_running():
 		text_tween.kill()
-	
-	start_symbol.text = ""
-	end_symbol.text = ""
-	label.text = ""
-	speaker.text = ""
+	speaker_image.hide()
+	speaker.hide()
+	label.hide()
+	start_symbol.hide()
+	end_symbol.hide()
 	label.visible_characters = -1
 	textbox_container.hide()
 	
-func show_textbox():
-	start_symbol.text = "*"
-	textbox_container.show()
-	
-func show_message(message: String) -> void:
+func show_message(message: String, talker: String) -> void:
 	if text_tween and text_tween.is_running():
 		text_tween.kill()
 		
 	label.text = message
-	speaker.text = "..."
-	start_symbol.text = "*"
-	end_symbol.text = "*"
+	speaker.text = talker
 	label.visible_characters = -1
 	textbox_container.show()
 	
@@ -54,7 +50,7 @@ func animate_text(next_text: String,talker: String) -> void:
 		
 	if talker == "n":
 		speaker_image.hide()
-		speaker.text = "..."
+		speaker.text = ""
 	
 	elif talker == "Blobby":
 		speaker_image.texture = load("res://assets/blobbypfp.png")
