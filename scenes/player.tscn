@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://runefw46l584" path="res://assets/lilguyspritesheet.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://deo58ofvkvesc" path="res://scenes/dash.tscn" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dfwvkdau4jubk" path="res://assets/pencil.webp" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://dwsf26dg1jvjc" path="res://icon.svg" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://usuuky7kw6pj" path="res://assets/blobby pointer.png" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bhbocerojhlgl" path="res://assets/red key black outline.png" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://b1yq8sngh41ou" path="res://assets/goldkey.png" id="7_fjrip"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("2_qhqgy")
@@ -215,6 +217,14 @@ animations = [{
 radius = 2.10075
 height = 11.3092985
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vivr"]
+atlas = ExtResource("6_tuyoq")
+region = Rect2(353, 0, 32, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6aa4"]
+atlas = ExtResource("7_fjrip")
+region = Rect2(353, 0, 32, 0)
+
 [node name="player" type="CharacterBody2D" unique_id=888699418 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_g2els")
@@ -256,6 +266,20 @@ rotation = 0.7574729
 shape = SubResource("CapsuleShape2D_dqkch")
 
 [node name="blobby pointer" type="Sprite2D" parent="." unique_id=527979038]
-visible = false
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("5_qlg0r")
+position = Vector2(-1.9999999, 1.9999999)
+scale = Vector2(0.24035089, 0.24035087)
+texture = ExtResource("5_tuyoq")
+
+[node name="red key" type="Node2D" parent="." unique_id=772449348]
+
+[node name="Sprite2D" type="Sprite2D" parent="red key" unique_id=918810890]
+position = Vector2(11, 12.000001)
+scale = Vector2(0.28906238, 0.2890627)
+texture = SubResource("AtlasTexture_1vivr")
+
+[node name="gold key" type="Node2D" parent="." unique_id=349817635]
+
+[node name="Sprite2D" type="Sprite2D" parent="gold key" unique_id=1867318338]
+position = Vector2(11, 12.000001)
+scale = Vector2(0.28906238, 0.2890627)
+texture = SubResource("AtlasTexture_n6aa4")

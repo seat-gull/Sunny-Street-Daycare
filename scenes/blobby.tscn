@@ -87,6 +87,7 @@ animation = &"dying"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754747847]
+visible = false
 position = Vector2(5, 1)
 shape = SubResource("CircleShape2D_1vivr")
 

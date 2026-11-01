@@ -4,7 +4,7 @@ extends Area2D
 @export var tilemap: TileMapLayer
 
 var player_nearby: bool = false
-var door_open: bool = false
+var redDoorOpen: bool = false
 var player_ref: Node2D = null
 var current_door: String = ""
 
@@ -13,11 +13,11 @@ func _ready() -> void:
 	body_shape_exited.connect(_on_body_shape_exited)
 
 func _process(delta: float) -> void:
-	if player_nearby and not door_open and player_ref:
+	if player_nearby and not redDoorOpen and player_ref:
 		if Input.is_action_just_pressed("interact"):
-			if player_ref.key_is_in_inv:
+			if player_ref.hasRedKey:
 				if current_door == "red door":
-					door_open = true
+					redDoorOpen = true
 					open_red_door()
 				else:
 					textbox.animate_text("This key doesn't fit","n")
@@ -42,7 +42,7 @@ func _on_body_shape_entered(
 	body_shape_index: int,
 	_local_shape_index: int
 ) -> void:
-	if body.is_in_group("player") and not door_open:
+	if body.is_in_group("player") and not redDoorOpen:
 		player_nearby = true
 		player_ref = body
 		
@@ -58,7 +58,7 @@ func _on_body_shape_exited(
 	_body_shape_index: int,
 	_local_shape_index: int
 ) -> void:
-	if body.is_in_group("player") and not door_open:
+	if body.is_in_group("player") and not redDoorOpen:
 		player_nearby = false
 		player_ref = null
 		current_door = ""
@@ -72,6 +72,6 @@ func _on_note_pressed() -> void:
 
 
 func _on_note_2_pressed() -> void:
-	textbox.animate_text("AHHHHHH!","n")
+	textbox.animate_text("sum text!","n")
 	await get_tree().create_timer(2.5).timeout
 	textbox.hide_textbox()

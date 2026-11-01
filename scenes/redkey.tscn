@@ -12,10 +12,11 @@ func _ready() -> void:
 	
 func pickup(body: Node2D) -> void:
 	if body.is_in_group(\"player\"):
-		if body.key_is_in_inv == false:
+		if body.hasRedKey == false:
 			var slot = body.hotbar.addItem(\"redkey\")
 			if slot:
-				body.key_is_in_inv = true
+				body.hasRedKey = true
+				body._on_slot_selected(2)
 				visible = false
 				textbox.animate_text(\"You got a red key!\",\"n\")
 				await get_tree().create_timer(3).timeout

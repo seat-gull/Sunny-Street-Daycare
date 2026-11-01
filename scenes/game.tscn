@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bacodlv4loo6a" path="res://scripts/doors.gd" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bhbocerojhlgl" path="res://assets/red key black outline.png" id="8_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d0wjfyonnnqf3" path="res://scenes/hotbar.tscn" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://b1yq8sngh41ou" path="res://assets/goldkey.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dfwvkdau4jubk" path="res://assets/pencil.webp" id="10_vtaks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xduwj"]
@@ -204,6 +205,10 @@ region = Rect2(0, 0, 151, 151)
 atlas = ExtResource("8_vtaks")
 region = Rect2(351.19995, -1.6000061, 35.200043, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n80e"]
+atlas = ExtResource("9_kvpfn")
+region = Rect2(353, -1.6, 32, 32)
+
 [node name="game" type="Node2D" unique_id=884617510]
 
 [node name="doors" type="Node" parent="." unique_id=1623868773]
@@ -284,6 +289,7 @@ offset_bottom = 640.0
 scale = Vector2(0.2, 0.2)
 pencilIcon = SubResource("AtlasTexture_yj1xu")
 redKeyIcon = SubResource("AtlasTexture_4qkdb")
+goldKeyIcon = SubResource("AtlasTexture_6n80e")
 
 [node name="textbox" parent="." unique_id=1108137771 instance=ExtResource("2_yqjtg")]
 

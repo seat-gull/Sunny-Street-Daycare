@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var arrow = $"blobby pointer"
 @onready var dash = $dash
 @onready var pencil = $pencil
+@onready var redKey = $"red key"
+@onready var goldKey = $"gold key"
+
 
 @export var textbox: CanvasLayer
 @export var movement_speed : float = 150
@@ -11,7 +14,7 @@ extends CharacterBody2D
 @export var blobby: Node2D
 
 var regen_amount: int = 5
-var regen_interval: float = 2.5
+var regen_interval: float = 1.5
 var regen_timer: float = 0.0
 
 var direction : Vector2 = Vector2(4, 4)
@@ -24,15 +27,29 @@ const dashlength = .1
 var max_health: int = 100
 var health: int = 100
 
-var key_is_in_inv: bool = false
+var hasRedKey: bool = false
+var hasGoldKey: bool = false
+var held_item: Node2D = null
 
 func _ready() -> void:
 	start_position = global_position
-	pencil.visible = true
 	arrow.position = Vector2(30, -30)
 	hotbar.slotSelected.connect(_on_slot_selected)
+	_on_slot_selected(1)
 
 func _physics_process(delta:float) -> void:
+	#flipping 
+	if direction.x > 0:
+		sprite.flip_h = false
+		if held_item != null:
+			held_item.scale.x = 1
+			held_item.position.x = 0
+	elif direction.x < 0:
+		sprite.flip_h = true
+		if held_item != null:
+			held_item.scale.x = -1
+			held_item.position.x = 10
+		
 	if health < max_health: 
 		regen_timer += delta
 		if regen_timer >= regen_interval:
@@ -64,16 +81,6 @@ func _physics_process(delta:float) -> void:
 	if Input.is_action_just_pressed("attack") and pencil.visible:
 		pencil.attack()
 	
-	#flipping 
-	if direction.x > 0:
-		sprite.flip_h = false
-		pencil.scale.x = 1
-		pencil.position.x = 0
-	elif direction.x < 0:
-		sprite.flip_h = true
-		pencil.scale.x = -1
-		pencil.position.x = 10
-	
 	if dash.is_dashing():
 		sprite.animation = "dash"
 		velocity = direction * dashspeed
@@ -90,7 +97,18 @@ func _physics_process(delta:float) -> void:
 	move_and_slide()
 	
 func _on_slot_selected(slotNumber):
-	pencil.visible = (slotNumber == 1)
+	pencil.visible = false
+	redKey.visible = false
+	#goldKey.visible = false
+	if slotNumber == 1:
+		held_item = pencil
+	elif slotNumber == 2 and hasRedKey == true:
+		held_item = redKey
+	else:
+		held_item = null
+	
+	if held_item != null:
+		held_item.visible = true
 	
 func take_damage(amount: int) -> void:
 	health = clampi(health - amount, 0, max_health)

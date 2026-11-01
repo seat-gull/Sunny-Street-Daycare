@@ -10,7 +10,7 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var redkey = $redkey
 @onready var healthbar = $HealthBar
 
-var shooter_timer_wait_time: float = 0.35
+var shooter_timer_wait_time: float = 0.45
 var teleport_min: Vector2 = Vector2(50, 50)
 var teleport_max: Vector2 = Vector2(650, 0)
 
@@ -75,12 +75,11 @@ func _on_shoot_timer_timeout() -> void:
 func takeDamage(amount: int) -> void:
 	health = max(health - amount, 0)
 	healthbar._set_health(health)
-	print("Blobby health: ", health)
 	
 	if health <= 0:
 		die()
 	
-	if health <= next_teleport_health:
+	if health <= next_teleport_health and next_teleport_health != 0:
 		teleport()
 		next_teleport_health -= 10
 
@@ -95,7 +94,8 @@ func die() -> void:
 	shoot_timer.stop()
 	trigger_area.set_deferred("monitoring", false)
 	
-	textbox.animate_text("blehhhh", "Blobby")
+	textbox.animate_text("blehhhhhh", "Blobby")
+	sprite.global_rotation = 0
 	sprite.play("dying")
 	await sprite.animation_finished
 	remove_child(redkey)
