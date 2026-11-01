@@ -57,8 +57,8 @@ func animate_text(next_text: String,talker: String) -> void:
 		speaker_image.show()
 		speaker.text = talker
 	
-	elif talker == "Margretta":
-		speaker_image.texture = load("res://assets/margrettapfp.png")
+	elif talker == "Malgretta":
+		speaker_image.texture = load("res://assets/malgrettapfp.png")
 		speaker_image.show()
 		speaker.text = talker
 		
