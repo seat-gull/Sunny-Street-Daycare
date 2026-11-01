@@ -1,16 +1,121 @@
 [gd_scene format=3 uid="uid://csqt8whroc504"]
 
-[ext_resource type="Script" uid="uid://pyknw4nh7lnl" path="res://scripts/blobby.gd" id="1_2trg2"]
-[ext_resource type="Texture2D" uid="uid://bcabryhxbses8" path="res://assets/bullet textures/bullet1.tres" id="2_tporp"]
-[ext_resource type="Texture2D" uid="uid://2u2oaps0u0xx" path="res://assets/bullet textures/bullet2.tres" id="3_2le62"]
-[ext_resource type="Texture2D" uid="uid://dh7606aa606a" path="res://assets/bullet textures/bullet3.tres" id="4_ethlv"]
-[ext_resource type="Texture2D" uid="uid://lt6x0c7baeuc" path="res://assets/bullet textures/bullet4.tres" id="5_bdmnx"]
-[ext_resource type="Texture2D" uid="uid://derp0jedyrl73" path="res://assets/bullet textures/bullet5.tres" id="6_gun7d"]
-[ext_resource type="Texture2D" uid="uid://c7dulym3vhlf2" path="res://assets/bullet textures/bullet6.tres" id="7_x6w0m"]
-[ext_resource type="Texture2D" uid="uid://dcssfg0lc16pb" path="res://assets/bullet textures/bullet7.tres" id="8_216h0"]
 [ext_resource type="Texture2D" uid="uid://dvft42hocxnya" path="res://assets/bloby idle & ded.webp" id="9_wfqpe"]
 [ext_resource type="PackedScene" uid="uid://b2mg5y6fdl640" path="res://scenes/goldkey.tscn" id="10_r8cj8"]
 [ext_resource type="PackedScene" uid="uid://chpw1ieoo27vk" path="res://scenes/health_bar.tscn" id="11_axtt2"]
+
+[sub_resource type="GDScript" id="GDScript_dinhu"]
+script/source = "extends AnimatableBody2D
+
+const bullet_scene = preload(\"res://scenes/bullet.tscn\")
+
+@onready var sprite = $animation
+@onready var shoot_timer = $ShootTimer
+@onready var trigger_area: Area2D = $TriggerArea
+@export var textbox: CanvasLayer
+@export var player: CharacterBody2D
+@onready var goldkey = $goldkey
+@onready var healthbar = $HealthBar
+
+var shooter_timer_wait_time: float = 0.45
+var teleport_min: Vector2 = Vector2(50, 50)
+var teleport_max: Vector2 = Vector2(650, 0)
+
+var has_triggered: bool = false
+
+var maxhealth = 50
+var health = 50
+var next_teleport_health = 40
+var isDead = false
+
+@export var bullet_textures: Array[Texture2D] = []
+
+func _ready() -> void:
+	goldkey.textbox = textbox
+	goldkey.monitoring = false
+	goldkey.hide()
+	shoot_timer.stop()
+	shoot_timer.wait_time = shooter_timer_wait_time
+	trigger_area.body_entered.connect(_on_player_entered)
+	healthbar.init_health(maxhealth)
+
+func _process(delta: float) -> void:
+	if has_triggered and !isDead:
+		sprite.look_at(player.global_position)
+		sprite.rotation += PI
+
+#detect player enter boss area
+func _on_player_entered(body: Node2D) -> void:
+	if has_triggered:
+		return
+
+	if not body.is_in_group(\"player\"):
+		return
+
+	has_triggered = true
+
+	trigger_area.set_deferred(\"monitoring\", false)
+	body.movement_locked = true
+	textbox.animate_text(\"Thanks for coming to daycare! You'll be a delicious snack!\", \"Malgretta\")
+	await get_tree().create_timer(3.5).timeout
+	textbox.hide_textbox()
+	
+	if is_instance_valid(body):
+		body.movement_locked = false
+	shoot_timer.start()
+
+func _on_shoot_timer_timeout() -> void:
+
+	var bullet = bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	
+	bullet.global_position = global_position
+	bullet.global_rotation = bullet.global_position.direction_to(player.global_position).angle()
+	
+	var visual_angle = randf_range(0, TAU)
+	bullet.set_sprite_rotation(visual_angle)
+
+	if bullet_textures.size() > 0:
+		var texture = bullet_textures.pick_random()
+		bullet.set_bullet_texture(texture)
+
+func takeDamage(amount: int) -> void:
+	health = max(health - amount, 0)
+	healthbar._set_health(health)
+	
+	if health <= 0:
+		die()
+	
+	if health <= next_teleport_health and next_teleport_health != 0:
+		teleport()
+		next_teleport_health -= 10
+
+func teleport() -> void:
+	global_position = Vector2(randf_range(teleport_min.x, teleport_max.x),randf_range(teleport_min.y, teleport_max.y))
+
+func die() -> void:
+	if isDead:
+		return
+		
+	isDead = true
+	shoot_timer.stop()
+	trigger_area.set_deferred(\"monitoring\", false)
+	
+	textbox.animate_text(\"blehhhhhh\", \"Malgretta\")
+	sprite.global_rotation = 0
+	sprite.play(\"dying\")
+	await sprite.animation_finished
+	remove_child(goldkey)
+	textbox.hide_textbox()
+	get_tree().current_scene.add_child(goldkey)
+	goldkey.global_position = Vector2(global_position.x+6,global_position.y)
+	
+	goldkey.show()
+	goldkey.set_deferred(\"monitoring\", true)
+	healthbar.hide()
+	collision_layer = false
+	
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7f7r"]
 atlas = ExtResource("9_wfqpe")
@@ -78,8 +183,7 @@ animations = [{
 radius = 17.029387
 
 [node name="malgretta" type="AnimatableBody2D" unique_id=1141341022]
-script = ExtResource("1_2trg2")
-bullet_textures = Array[Texture2D]([ExtResource("2_tporp"), ExtResource("3_2le62"), ExtResource("4_ethlv"), ExtResource("5_bdmnx"), ExtResource("6_gun7d"), ExtResource("7_x6w0m"), ExtResource("8_216h0")])
+script = SubResource("GDScript_dinhu")
 
 [node name="animation" type="AnimatedSprite2D" parent="." unique_id=467976783]
 sprite_frames = SubResource("SpriteFrames_1vivr")
