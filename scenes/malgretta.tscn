@@ -8,34 +8,34 @@
 script/source = "extends AnimatableBody2D
 
 const bullet_scene = preload(\"res://scenes/mbullet.tscn\")
+@export var bullet_textures: Array[Texture2D] = []
 
+@export var textbox: CanvasLayer
+@export var player: CharacterBody2D
 @onready var sprite = $animation
 @onready var shoot_timer = $ShootTimer
 @onready var trigger_area: Area2D = $TriggerArea
-@export var textbox: CanvasLayer
-@export var player: CharacterBody2D
 @onready var goldkey = $goldkey
 @onready var healthbar = $HealthBar
 
-var shooter_timer_wait_time: float = 0.45
-var teleport_min: Vector2 = Vector2(50, 50)
-var teleport_max: Vector2 = Vector2(650, 0)
+const shooter_timer_wait_time: float = 0.45
+const rotate_speed: int = 100
+const spawn_point_count: int = 4
+const radius: int = 100
 
 var has_triggered: bool = false
 
-var maxhealth = 50
-var health = 50
-var next_teleport_health = 40
+var maxhealth = 100
+var health = 100
 var isDead = false
 
-@export var bullet_textures: Array[Texture2D] = []
-
 func _ready() -> void:
+	var step = 2 * PI
+	
 	goldkey.textbox = textbox
 	goldkey.monitoring = false
 	goldkey.hide()
-	shoot_timer.stop()
-	shoot_timer.wait_time = shooter_timer_wait_time
+
 	trigger_area.body_entered.connect(_on_player_entered)
 	healthbar.init_health(maxhealth)
 
@@ -46,13 +46,11 @@ func _process(delta: float) -> void:
 
 #detect player enter boss area
 func _on_player_entered(body: Node2D) -> void:
-	if has_triggered:
-		return
-
-	if not body.is_in_group(\"player\"):
+	if has_triggered or not body.is_in_group(\"player\"):
 		return
 
 	has_triggered = true
+	print(\"entered\")
 
 	trigger_area.set_deferred(\"monitoring\", false)
 	body.movement_locked = true
@@ -86,13 +84,6 @@ func takeDamage(amount: int) -> void:
 	if health <= 0:
 		die()
 	
-	if health <= next_teleport_health and next_teleport_health != 0:
-		teleport()
-		next_teleport_health -= 10
-
-func teleport() -> void:
-	global_position = Vector2(randf_range(teleport_min.x, teleport_max.x),randf_range(teleport_min.y, teleport_max.y))
-
 func die() -> void:
 	if isDead:
 		return
@@ -196,6 +187,8 @@ position = Vector2(5, 1)
 shape = SubResource("CircleShape2D_1vivr")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1963709608]
+
+[node name="rotater" type="Node2D" parent="." unique_id=802468530]
 
 [node name="goldkey" parent="." unique_id=498507629 instance=ExtResource("10_r8cj8")]
 scale = Vector2(0.2, 0.2)

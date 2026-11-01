@@ -10,9 +10,9 @@ const bullet_scene = preload("res://scenes/bbullet.tscn")
 @onready var redkey = $redkey
 @onready var healthbar = $HealthBar
 
-var shooter_timer_wait_time: float = 0.45
-var teleport_min: Vector2 = Vector2(50, 50)
-var teleport_max: Vector2 = Vector2(650, 0)
+const shooter_timer_wait_time: float = 0.45
+const teleport_min: Vector2 = Vector2(50, 50)
+const teleport_max: Vector2 = Vector2(650, 0)
 
 var has_triggered: bool = false
 
@@ -39,16 +39,13 @@ func _process(delta: float) -> void:
 
 #detect player enter boss area
 func _on_player_entered(body: Node2D) -> void:
-	if has_triggered:
-		return
-
-	if not body.is_in_group("player"):
+	if has_triggered or not body.is_in_group("player"):
 		return
 
 	has_triggered = true
-
 	trigger_area.set_deferred("monitoring", false)
 	body.movement_locked = true
+	
 	textbox.animate_text("Thanks for coming to daycare! You'll be a delicious snack!", "Blobby")
 	await get_tree().create_timer(3.5).timeout
 	textbox.hide_textbox()
@@ -107,4 +104,3 @@ func die() -> void:
 	redkey.set_deferred("monitoring", true)
 	healthbar.hide()
 	collision_layer = false
-	
