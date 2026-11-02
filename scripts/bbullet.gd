@@ -1,9 +1,9 @@
 extends Area2D
 
 @export var speed: float = 125.0
-@export var damage: int = 10
-
 @onready var sprite: Sprite2D = $Sprite2D
+
+var damage: int = 10
 
 func set_bullet_texture(new_texture: Texture2D) -> void:
 	sprite.texture = new_texture

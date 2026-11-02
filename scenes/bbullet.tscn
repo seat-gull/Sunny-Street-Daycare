@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cpnl7rgco84pi" path="res://scripts/bbullet.gd" id="1_ppsyh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_hie50"]
 radius = 0.0
 
@@ -12,7 +10,6 @@ script = ExtResource("1_ppsyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=557075936]
 scale = Vector2(0.4, 0.4)
-texture = SubResource("AtlasTexture_dqkch")
 
 [node name="KillTimer" type="Timer" parent="." unique_id=1340946196]
 wait_time = 10.0

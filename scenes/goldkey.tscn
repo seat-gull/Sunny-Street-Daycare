@@ -17,7 +17,7 @@ func pickup(body: Node2D) -> void:
 				body.hasGoldKey = true
 				body._on_slot_selected(2)
 				visible = false
-				textbox.animate_text(\"You got a gold key!\",\"n\")
+				textbox.animate_text(\"You got a gold key! Maybe it can open the front door?\",\"n\")
 				await get_tree().create_timer(3).timeout
 				textbox.hide_textbox()
 				queue_free()

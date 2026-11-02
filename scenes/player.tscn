@@ -214,8 +214,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
-radius = 2.10075
-height = 11.3092985
+radius = 2.140236
+height = 14.136621
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vivr"]
 atlas = ExtResource("6_tuyoq")
@@ -261,7 +261,7 @@ animation = &"slash"
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pencil/hitbox" unique_id=2003548184]
-position = Vector2(15, 10.000001)
+position = Vector2(16, 9)
 rotation = 0.7574729
 shape = SubResource("CapsuleShape2D_dqkch")
 

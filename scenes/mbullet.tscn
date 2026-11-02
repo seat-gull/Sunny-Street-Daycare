@@ -1,13 +1,27 @@
 [gd_scene format=3 uid="uid://dg1otdlfwond7"]
 
 [ext_resource type="Script" uid="uid://bg17x878xqroc" path="res://scripts/mbullet.gd" id="1_hql7t"]
+[ext_resource type="Texture2D" uid="uid://bbkhkiiibsce3" path="res://assets/mbullets.png" id="2_bh17x"]
 
-[node name="mbullet" type="Node2D" unique_id=1546018961]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vrlf"]
+atlas = ExtResource("2_bh17x")
+region = Rect2(30, 0, 30, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5gy4"]
+radius = 8.514693
+
+[node name="mbullet" type="Area2D" unique_id=1099787339]
 script = ExtResource("1_hql7t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2003006631]
+texture = SubResource("AtlasTexture_8vrlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1122350216]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="KillTimer" type="Timer" parent="." unique_id=1101628947]
-wait_time = 10.0
+wait_time = 20.0
 
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
