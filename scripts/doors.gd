@@ -10,7 +10,6 @@ var current_door: String = ""
 var reading_note: bool = false
 
 func _ready() -> void:
-	body_shape_entered.connect(_on_body_shape_entered)
 	body_shape_exited.connect(_on_body_exited)
 
 func _process(delta: float) -> void:
@@ -41,11 +40,10 @@ func open_red_door() -> void:
 	if red_door_shape:
 		red_door_shape.set_deferred("disabled",true)
 
-
 func _on_body_shape_entered(
 	_body_rid: RID,
 	body: Node2D,
-	body_shape_index: int,
+	_body_shape_index: int,
 	_local_shape_index: int
 ) -> void:
 	if body.is_in_group("player"):
@@ -58,7 +56,8 @@ func _on_body_shape_entered(
 		
 		textbox.animate_text("Press E to open door","n")
 
-func _on_body_exited(_body_rid: RID,
+func _on_body_exited(
+	_body_rid: RID,
 	body: Node2D,
 	_body_shape_index: int,
 	_local_shape_index: int
@@ -71,7 +70,7 @@ func _on_body_exited(_body_rid: RID,
 		
 func _on_note_2_pressed() -> void:
 	reading_note = true
-	textbox.animate_text("i found a kee to open the red dor but Blobby eat it! i am going try to git it bak, wish me luk!","n")
+	textbox.animate_text("i found a kee to open the red dor but Blobby eat it! i am going try to git it bak, wish me luk! - petrick","n")
 	await get_tree().create_timer(6).timeout
 	textbox.hide_textbox()
 	reading_note = false

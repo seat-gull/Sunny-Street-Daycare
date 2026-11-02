@@ -19,10 +19,10 @@ const bullet_scene = preload(\"res://scenes/mbullet.tscn\")
 @onready var goldkey = $goldkey
 @onready var healthbar = $HealthBar
 
-const shooter_timer_wait_time: float = 0.5
+const shooter_timer_wait_time: float = 1
 const rotate_speed: int = 100
 const spawn_point_count: int = 5
-const radius: int = 55
+const radius: int = 35
 const move_speed = 25
 
 var has_triggered: bool = false

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cojd0elkk4lvf"]
+
+[ext_resource type="Script" uid="uid://o13ms4wmefxn" path="res://scripts/win.gd" id="1_826fv"]
+[ext_resource type="Texture2D" uid="uid://cp0v28ph8bg22" path="res://assets/family.png" id="2_iiocm"]
+[ext_resource type="PackedScene" uid="uid://dwwow6s78ss53" path="res://scenes/textbox.tscn" id="3_iiocm"]
+
+[node name="win" type="Control" unique_id=1981781745]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_826fv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1564073183]
+layout_mode = 0
+offset_right = 1338.0
+offset_bottom = 686.0
+texture = ExtResource("2_iiocm")
+
+[node name="textbox" parent="." unique_id=1768967301 instance=ExtResource("3_iiocm")]

@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://w52kl2dddjxt" path="res://assets/mbullet textures/bullet5.tres" id="9_5newe"]
 [ext_resource type="Texture2D" uid="uid://b1yq8sngh41ou" path="res://assets/goldkey.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dfwvkdau4jubk" path="res://assets/pencil.webp" id="10_vtaks"]
+[ext_resource type="AudioStream" uid="uid://c3hqqsowanc8m" path="res://assets/Funky Boxstep .mp3" id="18_ssvqc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xduwj"]
 size = Vector2(18, 40.5)
@@ -340,6 +341,12 @@ blobby = NodePath("../blobby")
 [node name="Camera2D2" type="Camera2D" parent="player" unique_id=83941832]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="backgroundmusic" type="AudioStreamPlayer2D" parent="." unique_id=1971522928]
+stream = ExtResource("18_ssvqc")
+volume_db = -11.2
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_exited" from="doors/interactable door" to="doors/interactable door" method="_on_body_exited"]
 [connection signal="body_shape_entered" from="doors/interactable door" to="doors/interactable door" method="_on_body_shape_entered"]

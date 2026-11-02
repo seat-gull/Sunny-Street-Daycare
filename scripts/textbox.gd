@@ -47,20 +47,21 @@ func animate_text(next_text: String,talker: String) -> void:
 	start_symbol.show()
 	end_symbol.show()
 	textbox_container.show()
-		
-	if talker == "n":
+	
+	if talker != "n":
+		if talker == "Blobby":
+			speaker_image.texture = load("res://assets/blobbypfp.png")
+		elif talker == "Malgretta":
+			speaker_image.texture = load("res://assets/malgrettapfp.png")
+		elif talker == "Mom":
+			speaker_image.texture = load("res://assets/mompfp.png")
+		elif talker == "Dad":
+			speaker_image.texture = load("res://assets/dadpfp.png")
+		speaker_image.show()
+		speaker.text = talker
+	else:
 		speaker_image.hide()
 		speaker.text = ""
-	
-	elif talker == "Blobby":
-		speaker_image.texture = load("res://assets/blobbypfp.png")
-		speaker_image.show()
-		speaker.text = talker
-	
-	elif talker == "Malgretta":
-		speaker_image.texture = load("res://assets/malgrettapfp.png")
-		speaker_image.show()
-		speaker.text = talker
 		
 	speaker.show()
 		
