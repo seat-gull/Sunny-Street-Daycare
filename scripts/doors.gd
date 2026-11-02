@@ -9,9 +9,6 @@ var player_ref: Node2D = null
 var current_door: String = ""
 var reading_note: bool = false
 
-func _ready() -> void:
-	body_shape_exited.connect(_on_body_exited)
-
 func _process(delta: float) -> void:
 	if player_nearby and player_ref:
 		if Input.is_action_just_pressed("interact"):
@@ -56,12 +53,7 @@ func _on_body_shape_entered(
 		
 		textbox.animate_text("Press E to open door","n")
 
-func _on_body_exited(
-	_body_rid: RID,
-	body: Node2D,
-	_body_shape_index: int,
-	_local_shape_index: int
-) -> void:
+func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_nearby = false
 		player_ref = null
